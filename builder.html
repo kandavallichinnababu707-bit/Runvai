@@ -3,38 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Build Resume</title>
+  <title>Runvai Resume Builder</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-slate-50 font-sans p-6">
-  <h1 class="text-2xl font-bold text-indigo-600 mb-4">Build Your Resume</h1>
+<body class="bg-gradient-to-b from-white to-slate-100 font-sans p-6">
 
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Form -->
-    <div class="bg-white p-6 rounded shadow space-y-4">
-      <input id="name" placeholder="Full Name" class="w-full p-2 border rounded"/>
-      <textarea id="summary" placeholder="Summary" class="w-full p-2 border rounded"></textarea>
-      <textarea id="experience" placeholder="Experience" class="w-full p-2 border rounded"></textarea>
-      <input id="skills" placeholder="Skills (comma separated)" class="w-full p-2 border rounded"/>
-      <button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded">Download PDF</button>
+  <header class="max-w-6xl mx-auto flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
+    <div>
+      <button id="loginBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Login with Google</button>
+      <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition hidden">Logout</button>
+      <span id="welcomeMsg" class="ml-3 text-gray-700"></span>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+    <!-- Form Section -->
+    <div class="bg-white p-6 rounded-2xl shadow-lg space-y-4">
+      <input id="name" placeholder="Full Name" class="w-full p-3 border rounded-lg"/>
+      <textarea id="summary" placeholder="Professional Summary" class="w-full p-3 border rounded-lg"></textarea>
+      <textarea id="experience" placeholder="Experience" class="w-full p-3 border rounded-lg"></textarea>
+      <input id="skills" placeholder="Skills (comma separated)" class="w-full p-3 border rounded-lg"/>
+      <div class="flex gap-3">
+        <button onclick="saveResume()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Save Resume</button>
+        <button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Download PDF</button>
+      </div>
     </div>
 
-    <!-- Preview -->
-    <div class="bg-white p-6 rounded shadow">
-      <h2 class="font-semibold mb-2">Preview</h2>
-      <div id="resume-preview" class="p-4 border rounded text-sm">
-        <h1 class="text-xl font-bold" id="preview-name">Full Name</h1>
-        <p class="italic text-gray-600" id="preview-summary">Professional summary...</p>
-        <h3 class="mt-3 font-semibold">Experience</h3>
+    <!-- Preview Section -->
+    <div class="bg-white p-6 rounded-2xl shadow-lg">
+      <h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
+      <div id="resume-preview" class="p-4 border rounded-lg text-sm">
+        <h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
+        <p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
+        <h3 class="font-semibold mt-3 mb-1">Experience</h3>
         <p id="preview-experience">Company - Role - Achievements...</p>
-        <h3 class="mt-3 font-semibold">Skills</h3>
+        <h3 class="font-semibold mt-3 mb-1">Skills</h3>
         <p id="preview-skills">Technical skills...</p>
       </div>
     </div>
-  </div>
+  </main>
 
-  <script>
+  <!-- Scripts -->
+  <script type="module">
+    // Live preview
     const fields = ["name", "summary", "experience", "skills"];
     fields.forEach(id => {
       document.getElementById(id).addEventListener("input", () => {
@@ -42,10 +56,26 @@
       });
     });
 
+    // Download PDF
     function downloadPDF() {
       const element = document.getElementById('resume-preview');
       html2pdf().from(element).save('resume.pdf');
     }
+
+    // ✅ Firebase login and save will be added here later
+    // Login/logout buttons are ready for Firebase integration
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const welcomeMsg = document.getElementById('welcomeMsg');
+
+    // Placeholder functions until Firebase integration
+    loginBtn.addEventListener('click', ()=> alert("Firebase login coming next!"));
+    logoutBtn.addEventListener('click', ()=> alert("Firebase logout coming next!"));
+
+    function saveResume() {
+      alert("Save resume to Firebase coming next!");
+    }
   </script>
+
 </body>
 </html>
