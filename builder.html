@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Runvai Resume Builder</title>
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- html2pdf CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="bg-gradient-to-b from-white to-slate-100 font-sans p-6">
 
+  <!-- Header -->
   <header class="max-w-6xl mx-auto flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
     <div>
@@ -20,6 +22,7 @@
   </header>
 
   <main class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+
     <!-- Form Section -->
     <div class="bg-white p-6 rounded-2xl shadow-lg space-y-4">
       <input id="name" placeholder="Full Name" class="w-full p-3 border rounded-lg"/>
@@ -35,6 +38,16 @@
     <!-- Preview Section -->
     <div class="bg-white p-6 rounded-2xl shadow-lg">
       <h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
+
+      <!-- Template Selector -->
+      <div class="mb-4">
+        <label for="templateSelect" class="font-semibold text-gray-700">Choose Template:</label>
+        <select id="templateSelect" class="ml-2 p-2 border rounded-lg">
+          <option value="modern">Modern</option>
+          <option value="professional">Professional</option>
+        </select>
+      </div>
+
       <div id="resume-preview" class="p-4 border rounded-lg text-sm">
         <h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
         <p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
@@ -44,11 +57,11 @@
         <p id="preview-skills">Technical skills...</p>
       </div>
     </div>
+
   </main>
 
-  <!-- Scripts -->
   <script type="module">
-    // Live preview
+    // Live preview update
     const fields = ["name", "summary", "experience", "skills"];
     fields.forEach(id => {
       document.getElementById(id).addEventListener("input", () => {
@@ -56,19 +69,36 @@
       });
     });
 
-    // Download PDF
+    // PDF download
     function downloadPDF() {
       const element = document.getElementById('resume-preview');
       html2pdf().from(element).save('resume.pdf');
     }
 
-    // ✅ Firebase login and save will be added here later
-    // Login/logout buttons are ready for Firebase integration
+    // Template selector
+    const templateSelect = document.getElementById("templateSelect");
+    const resumePreview = document.getElementById("resume-preview");
+
+    templateSelect.addEventListener("change", () => {
+      const template = templateSelect.value;
+      resumePreview.className = "p-4 border rounded-lg text-sm";
+
+      if(template === "modern") {
+        resumePreview.classList.add("bg-white", "text-gray-800", "font-sans");
+      } else if(template === "professional") {
+        resumePreview.classList.add("bg-gray-50", "text-gray-900", "font-serif");
+      }
+    });
+
+    // Set default template
+    templateSelect.value = "modern";
+    templateSelect.dispatchEvent(new Event("change"));
+
+    // Firebase login/logout placeholders
     const loginBtn = document.getElementById('loginBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const welcomeMsg = document.getElementById('welcomeMsg');
 
-    // Placeholder functions until Firebase integration
     loginBtn.addEventListener('click', ()=> alert("Firebase login coming next!"));
     logoutBtn.addEventListener('click', ()=> alert("Firebase logout coming next!"));
 
