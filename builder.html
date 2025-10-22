@@ -11,103 +11,98 @@
 
 <!-- Header -->
 <header class="max-w-7xl mx-auto flex justify-between items-center mb-6">
-<h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
-<div>
-<button id="loginBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Login with Google</button>
-<button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition hidden">Logout</button>
-<span id="welcomeMsg" class="ml-3 text-gray-700"></span>
-</div>
+  <h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
+  <div>
+    <button id="loginBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Login with Google</button>
+    <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition hidden">Logout</button>
+    <span id="welcomeMsg" class="ml-3 text-gray-700"></span>
+  </div>
 </header>
 
 <main class="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
 
-<!-- Left: Form Section -->
-<div class="space-y-4 p-6 bg-white rounded-2xl shadow-lg">
+  <!-- Left: Form Section -->
+  <div class="space-y-4 p-6 bg-white rounded-2xl shadow-lg">
+    <div class="p-4 border rounded-lg shadow-sm">
+      <label class="font-semibold text-gray-700">Full Name</label>
+      <input id="name" placeholder="Your Name" class="w-full p-3 mt-2 border rounded-lg"/>
+    </div>
 
-<div class="p-4 border rounded-lg shadow-sm">
-<label class="font-semibold text-gray-700">Full Name</label>
-<input id="name" placeholder="Your Name" class="w-full p-3 mt-2 border rounded-lg"/>
-</div>
+    <div class="p-4 border rounded-lg shadow-sm">
+      <label class="font-semibold text-gray-700">Professional Summary</label>
+      <textarea id="summary" placeholder="A short professional summary" class="w-full p-3 mt-2 border rounded-lg"></textarea>
+    </div>
 
-<div class="p-4 border rounded-lg shadow-sm">
-<label class="font-semibold text-gray-700">Professional Summary</label>
-<textarea id="summary" placeholder="A short professional summary" class="w-full p-3 mt-2 border rounded-lg"></textarea>
-</div>
+    <div class="p-4 border rounded-lg shadow-sm">
+      <label class="font-semibold text-gray-700">Experience</label>
+      <div id="experience-container" class="space-y-2 mt-2">
+        <input placeholder="Company - Role - Achievements" class="w-full p-3 border rounded-lg experience-input"/>
+      </div>
+      <button type="button" id="add-experience" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Experience</button>
+    </div>
 
-<div class="p-4 border rounded-lg shadow-sm">
-<label class="font-semibold text-gray-700">Experience</label>
-<div id="experience-container" class="space-y-2 mt-2">
-<input placeholder="Company - Role - Achievements" class="w-full p-3 border rounded-lg experience-input"/>
-</div>
-<button type="button" id="add-experience" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Experience</button>
-</div>
+    <div class="p-4 border rounded-lg shadow-sm">
+      <label class="font-semibold text-gray-700">Skills</label>
+      <div id="skills-container" class="space-y-2 mt-2">
+        <input placeholder="Skill" class="w-full p-3 border rounded-lg skill-input"/>
+      </div>
+      <button type="button" id="add-skill" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Skill</button>
+    </div>
 
-<div class="p-4 border rounded-lg shadow-sm">
-<label class="font-semibold text-gray-700">Skills</label>
-<div id="skills-container" class="space-y-2 mt-2">
-<input placeholder="Skill" class="w-full p-3 border rounded-lg skill-input"/>
-</div>
-<button type="button" id="add-skill" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Skill</button>
-</div>
+    <div class="flex gap-3 mt-4">
+      <button onclick="saveResume()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition flex-1">Save Resume</button>
+      <button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition flex-1">Download PDF</button>
+    </div>
+  </div>
 
-<div class="flex gap-3 mt-4">
-<button onclick="saveResume()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition flex-1">Save Resume</button>
-<button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition flex-1">Download PDF</button>
-</div>
+  <!-- Right: Template + Preview Section -->
+  <div class="p-6 bg-white rounded-2xl shadow-lg">
+    <h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
 
-</div>
+    <!-- Template Gallery -->
+    <div class="mb-4">
+      <h3 class="font-semibold text-gray-700 mb-2">Choose Template</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
-<!-- Right: Preview Section -->
-<div class="p-6 bg-white rounded-2xl shadow-lg">
-<h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
+        <!-- Free Templates -->
+        <div class="template-card cursor-pointer border rounded-lg overflow-hidden" data-template="modern" data-premium="false">
+          <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern" class="w-full h-32 object-cover"/>
+          <p class="text-center py-1 text-sm font-medium">Modern (Free)</p>
+        </div>
 
-<!-- Template Gallery -->
-<div class="mb-4">
-<h3 class="font-semibold text-gray-700 mb-2">Choose Template</h3>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="template-card cursor-pointer border rounded-lg overflow-hidden" data-template="professional" data-premium="false">
+          <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional" class="w-full h-32 object-cover"/>
+          <p class="text-center py-1 text-sm font-medium">Professional (Free)</p>
+        </div>
 
-<!-- Free Templates -->
-<div class="template-card cursor-pointer border rounded-lg overflow-hidden" data-template="modern" data-premium="false">
-  <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern" class="w-full h-32 object-cover"/>
-  <p class="text-center py-1 text-sm">Modern (Free)</p>
-</div>
+        <!-- Premium Templates -->
+        <div class="template-card cursor-not-allowed border rounded-lg overflow-hidden relative" data-template="minimalist" data-premium="true">
+          <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist" class="w-full h-32 object-cover opacity-60"/>
+          <p class="text-center py-1 text-sm font-medium">Minimalist (Premium)</p>
+          <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 font-bold">Upgrade</span>
+        </div>
 
-<div class="template-card cursor-pointer border rounded-lg overflow-hidden" data-template="professional" data-premium="false">
-  <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional" class="w-full h-32 object-cover"/>
-  <p class="text-center py-1 text-sm">Professional (Free)</p>
-</div>
+        <div class="template-card cursor-not-allowed border rounded-lg overflow-hidden relative" data-template="creative" data-premium="true">
+          <img src="https://i.imgur.com/1XGu27s.png" alt="Creative" class="w-full h-32 object-cover opacity-60"/>
+          <p class="text-center py-1 text-sm font-medium">Creative (Premium)</p>
+          <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 font-bold">Upgrade</span>
+        </div>
+      </div>
+    </div>
 
-<!-- Premium Templates -->
-<div class="template-card cursor-not-allowed border rounded-lg overflow-hidden relative" data-template="minimalist" data-premium="true">
-  <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist" class="w-full h-32 object-cover opacity-60"/>
-  <p class="text-center py-1 text-sm">Minimalist (Premium)</p>
-  <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 font-bold">Upgrade</span>
-</div>
-
-<div class="template-card cursor-not-allowed border rounded-lg overflow-hidden relative" data-template="creative" data-premium="true">
-  <img src="https://i.imgur.com/1XGu27s.png" alt="Creative" class="w-full h-32 object-cover opacity-60"/>
-  <p class="text-center py-1 text-sm">Creative (Premium)</p>
-  <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50 font-bold">Upgrade</span>
-</div>
-
-</div>
-</div>
-
-<!-- Resume Preview -->
-<div id="resume-preview" class="p-4 border rounded-lg text-sm">
-<h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
-<p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
-<h3 class="font-semibold mt-3 mb-1">Experience</h3>
-<ul id="preview-experience"><li>Company - Role - Achievements...</li></ul>
-<h3 class="font-semibold mt-3 mb-1">Skills</h3>
-<ul id="preview-skills"><li>Technical skills...</li></ul>
-</div>
-</div>
-
+    <!-- Resume Preview -->
+    <div id="resume-preview" class="p-4 border rounded-lg text-sm">
+      <h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
+      <p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
+      <h3 class="font-semibold mt-3 mb-1">Experience</h3>
+      <ul id="preview-experience"><li>Company - Role - Achievements...</li></ul>
+      <h3 class="font-semibold mt-3 mb-1">Skills</h3>
+      <ul id="preview-skills"><li>Technical skills...</li></ul>
+    </div>
+  </div>
 </main>
 
 <script>
-// Live preview
 const nameInput = document.getElementById("name");
 const summaryInput = document.getElementById("summary");
 const previewName = document.getElementById("preview-name");
@@ -118,7 +113,6 @@ const previewSkills = document.getElementById("preview-skills");
 nameInput.addEventListener("input", () => previewName.innerText = nameInput.value || "Full Name");
 summaryInput.addEventListener("input", () => previewSummary.innerText = summaryInput.value || "Professional summary...");
 
-// Dynamic Experience
 const expContainer = document.getElementById("experience-container");
 document.getElementById("add-experience").addEventListener("click", () => {
   const input = document.createElement("input");
@@ -133,7 +127,6 @@ function updateExperiencePreview() {
 }
 updateExperiencePreview();
 
-// Dynamic Skills
 const skillsContainer = document.getElementById("skills-container");
 document.getElementById("add-skill").addEventListener("click", () => {
   const input = document.createElement("input");
@@ -148,10 +141,8 @@ function updateSkillsPreview() {
 }
 updateSkillsPreview();
 
-// PDF download
 function downloadPDF() { html2pdf().from(document.getElementById("resume-preview")).save("resume.pdf"); }
 
-// Template card selector
 const templateCards = document.querySelectorAll(".template-card");
 const resumePreview = document.getElementById("resume-preview");
 
@@ -168,19 +159,11 @@ templateCards.forEach(card => {
     if(template === "modern") resumePreview.classList.add("bg-white","text-gray-800","font-sans");
     if(template === "professional") resumePreview.classList.add("bg-gray-50","text-gray-900","font-serif");
 
-    // Highlight selected card
     templateCards.forEach(c => c.classList.remove("ring-2","ring-indigo-500"));
     card.classList.add("ring-2","ring-indigo-500");
   });
 });
 
-// Firebase placeholders
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const welcomeMsg = document.getElementById("welcomeMsg");
-
-loginBtn.addEventListener("click", ()=> alert("Firebase login coming next!"));
-logoutBtn.addEventListener("click", ()=> alert("Firebase logout coming next!"));
 function saveResume(){ alert("Save resume to Firebase coming next!"); }
 </script>
 
