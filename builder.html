@@ -1,175 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Runvai Resume Builder</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runvai Resume Builder</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="bg-gradient-to-b from-white to-slate-100 font-sans p-4 md:p-6">
 
-  <!-- Header -->
-  <header class="max-w-7xl mx-auto flex justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
-    <div>
-      <button id="loginBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Login with Google</button>
-      <button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition hidden">Logout</button>
-      <span id="welcomeMsg" class="ml-3 text-gray-700"></span>
-    </div>
-  </header>
+<!-- Header -->
+<header class="max-w-7xl mx-auto flex justify-between items-center mb-6">
+<h1 class="text-3xl font-bold text-indigo-600">Runvai Resume Builder</h1>
+<div>
+<button id="loginBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Login with Google</button>
+<button id="logoutBtn" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition hidden">Logout</button>
+<span id="welcomeMsg" class="ml-3 text-gray-700"></span>
+</div>
+</header>
 
-  <main class="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
+<main class="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
 
-    <!-- Left: Form Section -->
-    <div class="space-y-4 p-6 bg-white rounded-2xl shadow-lg">
-      
-      <!-- Name -->
-      <div class="p-4 border rounded-lg shadow-sm">
-        <label class="font-semibold text-gray-700">Full Name</label>
-        <input id="name" placeholder="Your Name" class="w-full p-3 mt-2 border rounded-lg"/>
-      </div>
+<!-- Left: Form Section -->
+<div class="space-y-4 p-6 bg-white rounded-2xl shadow-lg">
 
-      <!-- Summary -->
-      <div class="p-4 border rounded-lg shadow-sm">
-        <label class="font-semibold text-gray-700">Professional Summary</label>
-        <textarea id="summary" placeholder="A short professional summary" class="w-full p-3 mt-2 border rounded-lg"></textarea>
-      </div>
+<!-- Name -->
+<div class="p-4 border rounded-lg shadow-sm">
+<label class="font-semibold text-gray-700">Full Name</label>
+<input id="name" placeholder="Your Name" class="w-full p-3 mt-2 border rounded-lg"/>
+</div>
 
-      <!-- Experience -->
-      <div class="p-4 border rounded-lg shadow-sm">
-        <label class="font-semibold text-gray-700">Experience</label>
-        <div id="experience-container" class="space-y-2 mt-2">
-          <input placeholder="Company - Role - Achievements" class="w-full p-3 border rounded-lg experience-input"/>
-        </div>
-        <button type="button" id="add-experience" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Experience</button>
-      </div>
+<!-- Summary -->
+<div class="p-4 border rounded-lg shadow-sm">
+<label class="font-semibold text-gray-700">Professional Summary</label>
+<textarea id="summary" placeholder="A short professional summary" class="w-full p-3 mt-2 border rounded-lg"></textarea>
+</div>
 
-      <!-- Skills -->
-      <div class="p-4 border rounded-lg shadow-sm">
-        <label class="font-semibold text-gray-700">Skills</label>
-        <div id="skills-container" class="space-y-2 mt-2">
-          <input placeholder="Skill" class="w-full p-3 border rounded-lg skill-input"/>
-        </div>
-        <button type="button" id="add-skill" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Skill</button>
-      </div>
+<!-- Experience -->
+<div class="p-4 border rounded-lg shadow-sm">
+<label class="font-semibold text-gray-700">Experience</label>
+<div id="experience-container" class="space-y-2 mt-2">
+<input placeholder="Company - Role - Achievements" class="w-full p-3 border rounded-lg experience-input"/>
+</div>
+<button type="button" id="add-experience" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Experience</button>
+</div>
 
-      <!-- Action Buttons -->
-      <div class="flex gap-3 mt-4">
-        <button onclick="saveResume()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition flex-1">Save Resume</button>
-        <button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition flex-1">Download PDF</button>
-      </div>
+<!-- Skills -->
+<div class="p-4 border rounded-lg shadow-sm">
+<label class="font-semibold text-gray-700">Skills</label>
+<div id="skills-container" class="space-y-2 mt-2">
+<input placeholder="Skill" class="w-full p-3 border rounded-lg skill-input"/>
+</div>
+<button type="button" id="add-skill" class="mt-2 px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">+ Add Skill</button>
+</div>
 
-    </div>
+<!-- Action Buttons -->
+<div class="flex gap-3 mt-4">
+<button onclick="saveResume()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition flex-1">Save Resume</button>
+<button onclick="downloadPDF()" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition flex-1">Download PDF</button>
+</div>
 
-    <!-- Right: Preview Section -->
-    <div class="p-6 bg-white rounded-2xl shadow-lg">
-      <h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
+</div>
 
-      <!-- Template Selector -->
-      <div class="mb-4">
-        <label for="templateSelect" class="font-semibold text-gray-700">Choose Template:</label>
-        <select id="templateSelect" class="ml-2 p-2 border rounded-lg">
-          <option value="modern">Modern</option>
-          <option value="professional">Professional</option>
-        </select>
-      </div>
+<!-- Right: Preview Section -->
+<div class="p-6 bg-white rounded-2xl shadow-lg">
+<h2 class="font-semibold mb-2 text-gray-800">Preview</h2>
 
-      <!-- Resume Preview -->
-      <div id="resume-preview" class="p-4 border rounded-lg text-sm">
-        <h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
-        <p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
-        <h3 class="font-semibold mt-3 mb-1">Experience</h3>
-        <ul id="preview-experience">
-          <li>Company - Role - Achievements...</li>
-        </ul>
-        <h3 class="font-semibold mt-3 mb-1">Skills</h3>
-        <ul id="preview-skills">
-          <li>Technical skills...</li>
-        </ul>
-      </div>
-    </div>
+<!-- Template Selector -->
+<div class="mb-4">
+<label for="templateSelect" class="font-semibold text-gray-700">Choose Template:</label>
+<select id="templateSelect" class="ml-2 p-2 border rounded-lg">
+<option value="modern">Modern (Free)</option>
+<option value="professional">Professional (Free)</option>
+<option value="minimalist" data-premium="true">Minimalist (Premium)</option>
+<option value="creative" data-premium="true">Creative (Premium)</option>
+</select>
+</div>
 
-  </main>
+<!-- Resume Preview -->
+<div id="resume-preview" class="p-4 border rounded-lg text-sm">
+<h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
+<p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
+<h3 class="font-semibold mt-3 mb-1">Experience</h3>
+<ul id="preview-experience"><li>Company - Role - Achievements...</li></ul>
+<h3 class="font-semibold mt-3 mb-1">Skills</h3>
+<ul id="preview-skills"><li>Technical skills...</li></ul>
+</div>
+</div>
 
-  <script type="module">
-    // Live preview updates
-    const nameInput = document.getElementById("name");
-    const summaryInput = document.getElementById("summary");
+</main>
 
-    const previewName = document.getElementById("preview-name");
-    const previewSummary = document.getElementById("preview-summary");
-    const previewExperience = document.getElementById("preview-experience");
-    const previewSkills = document.getElementById("preview-skills");
+<script type="module">
+// Live preview
+const nameInput = document.getElementById("name");
+const summaryInput = document.getElementById("summary");
+const previewName = document.getElementById("preview-name");
+const previewSummary = document.getElementById("preview-summary");
+const previewExperience = document.getElementById("preview-experience");
+const previewSkills = document.getElementById("preview-skills");
 
-    nameInput.addEventListener("input", () => previewName.innerText = nameInput.value || "Full Name");
-    summaryInput.addEventListener("input", () => previewSummary.innerText = summaryInput.value || "Professional summary...");
+nameInput.addEventListener("input", () => previewName.innerText = nameInput.value || "Full Name");
+summaryInput.addEventListener("input", () => previewSummary.innerText = summaryInput.value || "Professional summary...");
 
-    // Experience dynamic add/remove
-    const expContainer = document.getElementById("experience-container");
-    document.getElementById("add-experience").addEventListener("click", () => {
-      const input = document.createElement("input");
-      input.placeholder = "Company - Role - Achievements";
-      input.className = "w-full p-3 border rounded-lg experience-input";
-      expContainer.appendChild(input);
-      input.addEventListener("input", updateExperiencePreview);
-    });
+// Dynamic Experience
+const expContainer = document.getElementById("experience-container");
+document.getElementById("add-experience").addEventListener("click", () => {
+  const input = document.createElement("input");
+  input.placeholder = "Company - Role - Achievements";
+  input.className = "w-full p-3 border rounded-lg experience-input";
+  expContainer.appendChild(input);
+  input.addEventListener("input", updateExperiencePreview);
+});
+function updateExperiencePreview() {
+  const items = Array.from(document.querySelectorAll(".experience-input")).map(i=>i.value).filter(Boolean);
+  previewExperience.innerHTML = items.map(i=>`<li>${i}</li>`).join("") || "<li>Company - Role - Achievements...</li>";
+}
+updateExperiencePreview();
 
-    function updateExperiencePreview() {
-      const items = Array.from(document.querySelectorAll(".experience-input")).map(i => i.value).filter(Boolean);
-      previewExperience.innerHTML = items.map(i => `<li>${i}</li>`).join("") || "<li>Company - Role - Achievements...</li>";
-    }
-    updateExperiencePreview();
+// Dynamic Skills
+const skillsContainer = document.getElementById("skills-container");
+document.getElementById("add-skill").addEventListener("click", () => {
+  const input = document.createElement("input");
+  input.placeholder = "Skill";
+  input.className = "w-full p-3 border rounded-lg skill-input";
+  skillsContainer.appendChild(input);
+  input.addEventListener("input", updateSkillsPreview);
+});
+function updateSkillsPreview() {
+  const items = Array.from(document.querySelectorAll(".skill-input")).map(i=>i.value).filter(Boolean);
+  previewSkills.innerHTML = items.map(i=>`<li>${i}</li>`).join("") || "<li>Technical skills...</li>";
+}
+updateSkillsPreview();
 
-    // Skills dynamic add/remove
-    const skillsContainer = document.getElementById("skills-container");
-    document.getElementById("add-skill").addEventListener("click", () => {
-      const input = document.createElement("input");
-      input.placeholder = "Skill";
-      input.className = "w-full p-3 border rounded-lg skill-input";
-      skillsContainer.appendChild(input);
-      input.addEventListener("input", updateSkillsPreview);
-    });
+// PDF download
+function downloadPDF() { html2pdf().from(document.getElementById("resume-preview")).save("resume.pdf"); }
 
-    function updateSkillsPreview() {
-      const items = Array.from(document.querySelectorAll(".skill-input")).map(i => i.value).filter(Boolean);
-      previewSkills.innerHTML = items.map(i => `<li>${i}</li>`).join("") || "<li>Technical skills...</li>";
-    }
-    updateSkillsPreview();
+// Template selector with premium lock
+const templateSelect = document.getElementById("templateSelect");
+const resumePreview = document.getElementById("resume-preview");
 
-    // PDF download
-    function downloadPDF() {
-      html2pdf().from(document.getElementById("resume-preview")).save("resume.pdf");
-    }
+templateSelect.addEventListener("change", () => {
+  const selected = templateSelect.options[templateSelect.selectedIndex];
+  const isPremium = selected.dataset.premium === "true";
 
-    // Template selector
-    const templateSelect = document.getElementById("templateSelect");
-    const resumePreview = document.getElementById("resume-preview");
-
-    templateSelect.addEventListener("change", () => {
-      const template = templateSelect.value;
-      resumePreview.className = "p-4 border rounded-lg text-sm";
-
-      if(template === "modern") resumePreview.classList.add("bg-white", "text-gray-800", "font-sans");
-      if(template === "professional") resumePreview.classList.add("bg-gray-50", "text-gray-900", "font-serif");
-    });
-
-    // Default template
-    templateSelect.value = "modern";
+  if(isPremium){
+    alert("This is a premium template. Please upgrade to unlock.");
+    templateSelect.value = "modern"; // revert
     templateSelect.dispatchEvent(new Event("change"));
+    return;
+  }
 
-    // Firebase placeholders
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const welcomeMsg = document.getElementById("welcomeMsg");
+  const template = templateSelect.value;
+  resumePreview.className = "p-4 border rounded-lg text-sm";
+  if(template === "modern") resumePreview.classList.add("bg-white","text-gray-800","font-sans");
+  if(template === "professional") resumePreview.classList.add("bg-gray-50","text-gray-900","font-serif");
+});
 
-    loginBtn.addEventListener("click", ()=> alert("Firebase login coming next!"));
-    logoutBtn.addEventListener("click", ()=> alert("Firebase logout coming next!"));
+// Default template
+templateSelect.value = "modern";
+templateSelect.dispatchEvent(new Event("change"));
 
-    function saveResume() {
-      alert("Save resume to Firebase coming next!");
-    }
-  </script>
+// Firebase placeholders
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const welcomeMsg = document.getElementById("welcomeMsg");
 
+loginBtn.addEventListener("click", ()=> alert("Firebase login coming next!"));
+logoutBtn.addEventListener("click", ()=> alert("Firebase logout coming next!"));
+function saveResume(){ alert("Save resume to Firebase coming next!"); }
+
+</script>
 </body>
 </html>
