@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Runvai Resume Builder</title>
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- html2pdf CDN -->
+  <!-- html2pdf for PDF download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="bg-gradient-to-b from-white to-slate-100 font-sans p-6">
@@ -48,6 +48,7 @@
         </select>
       </div>
 
+      <!-- Resume Preview -->
       <div id="resume-preview" class="p-4 border rounded-lg text-sm">
         <h1 class="text-xl font-bold mb-1" id="preview-name">Full Name</h1>
         <p class="italic text-gray-600 mb-2" id="preview-summary">Professional summary...</p>
@@ -61,7 +62,7 @@
   </main>
 
   <script type="module">
-    // Live preview update
+    // Live preview
     const fields = ["name", "summary", "experience", "skills"];
     fields.forEach(id => {
       document.getElementById(id).addEventListener("input", () => {
@@ -81,6 +82,7 @@
 
     templateSelect.addEventListener("change", () => {
       const template = templateSelect.value;
+      // Reset classes
       resumePreview.className = "p-4 border rounded-lg text-sm";
 
       if(template === "modern") {
@@ -90,7 +92,7 @@
       }
     });
 
-    // Set default template
+    // Set default template on load
     templateSelect.value = "modern";
     templateSelect.dispatchEvent(new Event("change"));
 
