@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Runvai — Templates</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); backdrop-filter: blur(6px) saturate(120%); }
+  .locked-overlay { background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55)); }
+  .card-hover { transition: transform .22s ease, box-shadow .22s ease; }
+  .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 12px 30px rgba(2,6,23,0.5); }
+</style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#071029] to-[#030414] text-white">
+
+<header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow">RV</div>
+    <div>
+      <h1 class="font-bold text-lg">Runvai</h1>
+      <div class="text-xs text-indigo-200/60">Choose a template</div>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html" class="text-indigo-200/60 hover:text-white mr-4">Home</a>
+    <a href="builder.html" class="px-3 py-2 bg-indigo-600 rounded-lg shadow hover:scale-105 transition">Go to Builder</a>
+  </nav>
+</header>
+
+<main class="max-w-6xl mx-auto p-6">
+
+  <section class="mb-6">
+    <h2 class="text-3xl font-extrabold mb-2">Pick a template</h2>
+    <p class="text-indigo-200/60">Free templates are ready to use. Premium templates are locked — unlock in a Pro plan.</p>
+  </section>
+
+  <!-- gallery -->
+  <section class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <!-- Modern (free) -->
+    <article class="card-hover relative rounded-xl overflow-hidden" data-template="modern" data-premium="false">
+      <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern" class="w-full h-44 object-cover"/>
+      <div class="p-3 bg-gradient-to-t from-black/30 to-transparent">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="font-semibold">Modern</div>
+            <div class="text-xs text-indigo-200/60">Free</div>
+          </div>
+          <button class="select-btn px-3 py-1 bg-indigo-600 rounded text-sm">Select</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Professional (free) -->
+    <article class="card-hover relative rounded-xl overflow-hidden" data-template="professional" data-premium="false">
+      <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional" class="w-full h-44 object-cover"/>
+      <div class="p-3 bg-gradient-to-t from-black/30 to-transparent">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="font-semibold">Professional</div>
+            <div class="text-xs text-indigo-200/60">Free</div>
+          </div>
+          <button class="select-btn px-3 py-1 bg-indigo-600 rounded text-sm">Select</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Minimalist (premium) -->
+    <article class="card-hover relative rounded-xl overflow-hidden" data-template="minimalist" data-premium="true">
+      <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist" class="w-full h-44 object-cover"/>
+      <div class="absolute inset-0 locked-overlay flex items-center justify-center">
+        <div class="text-center">
+          <div class="text-sm font-bold">Minimalist</div>
+          <div class="text-xs text-indigo-200/60 mb-3">Premium</div>
+          <button class="unlock-btn px-4 py-2 bg-yellow-500 text-black rounded">Unlock</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Creative (premium) -->
+    <article class="card-hover relative rounded-xl overflow-hidden" data-template="creative" data-premium="true">
+      <img src="https://i.imgur.com/1XGu27s.png" alt="Creative" class="w-full h-44 object-cover"/>
+      <div class="absolute inset-0 locked-overlay flex items-center justify-center">
+        <div class="text-center">
+          <div class="text-sm font-bold">Creative</div>
+          <div class="text-xs text-indigo-200/60 mb-3">Premium</div>
+          <button class="unlock-btn px-4 py-2 bg-yellow-500 text-black rounded">Unlock</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <div class="mt-8 text-center text-indigo-200/60">After selecting a template you’ll be taken to the builder. Premium templates require upgrade.</div>
+
+</main>
+
+<script>
+  // Selection handler
+  document.querySelectorAll('[data-template]').forEach(card => {
+    const selectBtn = card.querySelector('.select-btn');
+    const unlockBtn = card.querySelector('.unlock-btn');
+
+    if(selectBtn){
+      selectBtn.addEventListener('click', (e) => {
+        const tpl = card.dataset.template;
+        // save selection to localStorage and go to builder
+        localStorage.setItem('runvai_selected_template', tpl);
+        location.href = 'builder.html';
+      });
+    }
+
+    if(unlockBtn){
+      unlockBtn.addEventListener('click', () => {
+        alert('Premium template — upgrade coming soon. For now, use a free template or contact us.');
+        // later: show billing / razorpay flow
+      });
+    }
+
+    // also allow clicking the whole card (free templates)
+    card.addEventListener('click', (e) => {
+      const isPremium = card.dataset.premium === 'true';
+      if(isPremium) return;
+      // if clicked outside button, still select
+      if(!e.target.classList.contains('unlock-btn')){
+        localStorage.setItem('runvai_selected_template', card.dataset.template);
+        location.href = 'builder.html';
+      }
+    });
+  });
+
+  // if user came from index with hash, scroll to premium
+  if(location.hash === '#premium') {
+    const el = document.querySelector('[data-template][data-premium="true"]');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+</script>
+
+</body>
+</html>
