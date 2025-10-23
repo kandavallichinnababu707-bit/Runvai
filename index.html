@@ -1,120 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Runvai — Build Resumes with AI</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  /* small custom styles for the futuristic look */
-  .glass {
-    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    backdrop-filter: blur(6px) saturate(120%);
-  }
-  .float-anim {
-    animation: float 6s ease-in-out infinite;
-  }
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runvai — Build Job-Winning Resumes</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Configuration for Inter */
+        html { font-family: 'Inter', sans-serif; }
+        /* Professional color palette */
+        :root {
+            --color-primary: #1D4ED8; /* Blue-700 for main actions */
+            --color-secondary: #E5E7EB; /* Gray-200 for backgrounds */
+            --color-text: #1F2937; /* Gray-800 */
+        }
+        .text-primary { color: var(--color-primary); }
+        .bg-primary { background-color: var(--color-primary); }
+        .hover\:bg-primary-dark:hover { background-color: #1E40AF; } /* Blue-800 */
+
+        .resume-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#081427] to-[#020617] text-white antialiased">
+<body class="bg-gray-50 text-gray-800 min-h-screen">
 
-    <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">RV</div>
-      <div>
-        <h1 class="font-extrabold text-xl tracking-tight">Runvai</h1>
-        <div class="text-xs text-indigo-200/60">Smart resume builder</div>
-      </div>
-    </div>
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center space-x-2">
+                <!-- Professional Logo (Simple RV icon with full name) -->
+                <div class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">RV</div>
+                <span class="text-xl font-extrabold tracking-tight">Runvai</span>
+            </div>
+            <div class="hidden sm:flex items-center space-x-6">
+                <a href="#features" class="text-sm font-medium hover:text-primary">Features</a>
+                <a href="#templates" class="text-sm font-medium hover:text-primary">Templates</a>
+                <a href="#" class="text-sm font-medium hover:text-primary">Pricing</a>
+                <a href="#" class="px-4 py-2 text-sm font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark transition duration-150 shadow-md">Start Building Free</a>
+            </div>
+            <!-- Mobile Menu Placeholder -->
+            <button class="sm:hidden p-2 rounded-lg hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+    </header>
 
-    <nav class="flex items-center gap-4">
-      <a href="templates.html" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-lg text-sm font-bold shadow hover:scale-105 transition transform hover:bg-amber-400">Start Building</a>
-      <a href="https://github.com" target="_blank" class="text-sm text-indigo-200/70 hover:text-white transition">Docs</a>
-    </nav>
-  </header>
+    <main>
+        <!-- Hero Section: Clear Value Proposition -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+                <!-- Left Column: Headline and CTA -->
+                <div class="lg:col-span-6 space-y-6">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
+                        Build a <span class="text-primary">Job-Winning</span> Resume — Fast & ATS-Friendly
+                    </h1>
+                    <p class="text-lg text-gray-600 max-w-lg">
+                        Runvai combines professional templates, AI optimization tools (coming soon), and easy exports to help you land interviews, not just applications.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="#" class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-xl hover:bg-primary-dark transition duration-200 text-center text-lg">
+                            Start Building Now (It's Free)
+                        </a>
+                        <a href="#" class="text-primary border-2 border-primary font-semibold py-3 px-8 rounded-xl hover:bg-gray-100 transition duration-200 text-center text-lg">
+                            See Premium Features
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-500 pt-2">
+                        No credit card required. Free plan limited to one template and PDF export.
+                    </p>
+                </div>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
-    <section class="space-y-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
-        Build a job-winning resume — <span class="text-amber-400">fast</span> and <span class="text-purple-400">beautiful</span>
-      </h2>
-      <p class="text-slate-300 max-w-xl">
-        Runvai blends **ATS-friendly templates** and **futuristic AI tools** to help you land interviews. Choose a design, tune with AI, and export as a perfect PDF.
-      </p>
+                <!-- Right Column: Resume Preview -->
+                <div class="lg:col-span-6 mt-12 lg:mt-0 flex justify-center lg:justify-end">
+                    <!-- Placeholder for the Minimalist Resume Preview -->
+                    <div class="w-full max-w-md h-[500px] bg-white rounded-xl p-6 resume-shadow border border-gray-100 transform hover:scale-[1.02] transition duration-300">
+                        <div class="text-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-900">Jane Doe</h2>
+                            <p class="text-primary font-medium">Senior Product Designer | 5 Years Experience</p>
+                        </div>
+                        <div class="grid grid-cols-12 gap-4 h-full">
+                            <!-- Left Sidebar (Skills, Contact) -->
+                            <div class="col-span-4 text-sm space-y-4 pr-3 border-r border-gray-200">
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 mb-2">CONTACT</h3>
+                                <p>+91 XXX XXXX XX</p>
+                                <p>jane.doe@email.com</p>
+                                <p>linkedin.com/in/janedoe</p>
 
-      <div class="flex gap-4">
-                <a href="templates.html" class="inline-flex items-center gap-2 px-5 py-3 bg-amber-500 text-slate-900 rounded-lg font-bold shadow-xl hover:scale-105 transition duration-200 hover:bg-amber-400">
-          Start Creating for FREE
-          <svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 mb-2 pt-4">SKILLS</h3>
+                                <ul class="list-none space-y-1 pl-0">
+                                    <li>Figma, Sketch</li>
+                                    <li>User Research</li>
+                                    <li>Prototyping</li>
+                                    <li>Agile/Scrum</li>
+                                </ul>
+                            </div>
+                            <!-- Right Content (Experience, Education) -->
+                            <div class="col-span-8 text-sm space-y-6 overflow-y-auto">
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">SUMMARY</h3>
+                                <p class="text-gray-700">Highly creative and data-driven Product Designer with 5+ years of experience specializing in B2B SaaS platforms. Proven ability to translate complex requirements into intuitive, user-friendly designs that drive adoption and customer retention.</p>
 
-                <button onclick="location.href='templates.html#premium'" class="px-5 py-3 bg-indigo-600/30 ring-1 ring-indigo-500 rounded-lg text-indigo-200 hover:bg-indigo-600/50 transition duration-200 font-semibold">Unlock Pro Features</button>
-      </div>
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">EXPERIENCE</h3>
+                                <div class="space-y-1">
+                                    <p class="font-semibold">Lead Designer, TechCorp</p>
+                                    <p class="text-xs text-gray-500">2020 — Present | San Francisco, CA</p>
+                                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                        <li>Redesigned core product dashboard, leading to a 25% increase in feature discovery and usage.</li>
+                                        <li>Mentored junior designers on UI/UX best practices and design systems implementation.</li>
+                                    </ul>
+                                </div>
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">EDUCATION</h3>
+                                <div class="space-y-1">
+                                    <p class="font-semibold">B.A. Graphic Design</p>
+                                    <p class="text-xs text-gray-500">2016 — 2020 | State University</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <div class="mt-6 grid grid-cols-2 gap-4 text-xs text-indigo-200/60">
-        <div class="glass rounded-lg p-3 flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-indigo-600/30 flex items-center justify-center text-lg">⚡</div>
-          <div>
-            <div class="font-semibold">Fast exports</div>
-            <div class="text-xs">Text-based PDF & DOCX exports</div>
-          </div>
-        </div>
+        <!-- Feature Section: Trust and Value -->
+        <section id="features" class="bg-white py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Why Choose Runvai?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-        <div class="glass rounded-lg p-3 flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-purple-600/30 flex items-center justify-center text-lg">🔒</div>
-          <div>
-            <div class="font-semibold">Secure by default</div>
-            <div class="text-xs">Google login & private storage</div>
-          </div>
-        </div>
-      </div>
-    </section>
+                    <!-- Feature 1: ATS Compliance -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
+                        <div class="text-primary mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25A4.75 4.75 0 0 1 15 7.125a4.75 4.75 0 0 1-4.875 4.875A4.75 4.75 0 0 1 5.25 7.125a4.75 4.75 0 0 1 4.875-4.875Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5c2.75 0 5.244.73 7.07 1.83.693.42 1.356 1.01 1.954 1.764.135.166.307.316.502.433.09.052.186.096.287.133.447.164.887.277 1.32.337.214.03.429.045.645.045h1.25V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21v-3.75c0-.621.504-1.125 1.125-1.125h1.25c.165 0 .33-.01.49-.03a4.75 4.75 0 0 1 4.875-4.875Z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">ATS-Friendly Design</h3>
+                        <p class="text-gray-600">Our templates are tested against Applicant Tracking Systems (ATS) to ensure your resume is parsed correctly, every time.</p>
+                    </div>
 
-    <section class="relative">
-      <div class="absolute -right-8 -top-6 w-72 h-72 rounded-2xl bg-gradient-to-br from-indigo-500/30 to-purple-500/20 blur-3xl opacity-60 float-anim"></div>
+                    <!-- Feature 2: Clean Exports -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
+                        <div class="text-primary mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Crisp PDF & DOCX</h3>
+                        <p class="text-gray-600">Download high-resolution, text-based PDF and DOCX files that look perfect on screen and when printed (DOCX is a premium feature).</p>
+                    </div>
 
-      <div class="glass p-6 rounded-2xl shadow-2xl border border-white/6">
-        <h3 class="font-semibold mb-2 text-xl">Preview: Minimalist (Premium)</h3>
-                <div class="bg-white rounded-lg text-slate-900 p-4" style="min-height:220px">
-          <h4 class="font-bold text-lg">Jane Doe</h4>
-          <p class="text-sm text-slate-600">Product Designer — 5 years</p>
-          <div class="mt-3 text-sm text-slate-700">Experience highlights, achievement bullets and clean layout — export-ready preview.</div>
-        </div>
+                    <!-- Feature 3: Focused Editor (Ready for AI) -->
+                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
+                        <div class="text-primary mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.862 4.487Zm0 0-1.5 1.5m1.5-1.5v1.5m-1.5-1.5h1.5" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Sleek, Real-Time Editor</h3>
+                        <p class="text-gray-600">Forget clunky software. See every change instantly with a clean, focused editor designed for speed and clarity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="mt-4 flex gap-3">
-          <a href="templates.html" class="px-4 py-2 bg-amber-500 text-slate-900 font-bold rounded hover:scale-105 transition hover:bg-amber-400">Choose Template</a>
-          <a href="#features" class="px-4 py-2 ring-1 ring-indigo-500 rounded text-indigo-200 hover:bg-indigo-900/10 transition">Features</a>
-        </div>
-      </div>
-    </section>
-  </main>
+        <!-- Template Section (The next focus area) -->
+        <section id="templates" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Our Templates Get You Noticed</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Template Card 1 (Minimalist - Free) -->
+                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
+                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                        MINIMALIST (Free) - Simple Two-Column Layout
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900">The Minimalist</h3>
+                    <p class="text-gray-600 text-sm">Our most popular ATS-friendly design. Clean, classic, and works everywhere.</p>
+                    <a href="#" class="block w-full text-center py-2 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
+                        Select Template
+                    </a>
+                </div>
 
-    <section id="features" class="max-w-6xl mx-auto px-6 py-10">
-    <h3 class="text-2xl font-semibold text-white/90 mb-6">Key Features</h3>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="glass p-4 rounded-lg border border-indigo-700/30">
-        <div class="font-semibold text-lg">AI Suggestions</div>
-        <div class="text-sm text-indigo-200/60 mt-2">Tailor bullets, rewrite summaries, and match job descriptions (coming soon).</div>
-      </div>
-      <div class="glass p-4 rounded-lg border border-indigo-700/30">
-        <div class="font-semibold text-lg">ATS Check</div>
-        <div class="text-sm text-indigo-200/60 mt-2">See keywords & compatibility score for each job posting.</div>
-        </div>
-      <div class="glass p-4 rounded-lg border border-indigo-700/30">
-        <div class="font-semibold text-lg">Templates</div>
-        <div class="text-sm text-indigo-200/60 mt-2">**Free** + premium templates all designed for maximum compatibility and style.</div>
-      </div>
-    </div>
-  </section>
+                <!-- Template Card 2 (Modern - Premium) -->
+                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4 relative">
+                    <span class="absolute top-0 right-0 mt-4 mr-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">PREMIUM</span>
+                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                        MODERN - Bold Color, Clear Sections
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900">The Modern Pro</h3>
+                    <p class="text-gray-600 text-sm">A contemporary design with subtle color accents and strong visual hierarchy.</p>
+                    <a href="#" class="block w-full text-center py-2 bg-gray-200 text-gray-700 rounded-lg font-medium cursor-not-allowed">
+                        Upgrade to Use
+                    </a>
+                </div>
 
-    <footer class="max-w-6xl mx-auto p-6 text-center text-indigo-200/40 border-t border-indigo-900/40 mt-10">
-    © 2025 Runvai — Crafted for builders & job seekers
-  </footer>
+                <!-- Template Card 3 (Technical/Functional) -->
+                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
+                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                        TECHNICAL - Skills Focused
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900">The Functional</h3>
+                    <p class="text-gray-600 text-sm">Highlights core competencies over timeline. Ideal for career changers.</p>
+                    <a href="#" class="block w-full text-center py-2 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
+                        Select Template
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="text-lg font-semibold text-primary hover:text-primary-dark transition duration-150">
+                    Browse All Templates →
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
+            <p>&copy; 2025 Runvai. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-primary">Pricing</a>
+                <a href="#" class="hover:text-primary">Privacy Policy</a>
+                <a href="#" class="hover:text-primary">Terms of Service</a>
+                <a href="#" class="hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
