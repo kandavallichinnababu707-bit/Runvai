@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -6,13 +7,10 @@
 <title>Runvai — Templates</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-    /* Custom CSS for the dark theme glass effect */
     .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); backdrop-filter: blur(6px) saturate(120%); }
-    /* Darker overlay for premium lock */
     .locked-overlay { background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)); }
-    /* Hover effect for template cards */
     .card-hover { transition: transform .22s ease, box-shadow .22s ease; }
-    .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 16px 40px rgba(0,0,0,0.7); /* Stronger shadow for dark theme */ }
+    .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 16px 40px rgba(0,0,0,0.7); }
 </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-[#071029] to-[#030414] text-white">
@@ -32,159 +30,146 @@
 </header>
 
 <main class="max-w-6xl mx-auto p-6">
-
     <section class="mb-10 text-center">
         <h2 class="text-4xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300">Pick Your Winning Template</h2>
         <p class="text-lg text-indigo-200/70">Free templates are ready instantly. Premium templates unlock advanced designs and features with a Pro plan.</p>
     </section>
 
-    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="modern" data-premium="false">
-            <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern Template" class="w-full h-52 object-cover object-top"/>
-            <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-                
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-indigo-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">ATS Safe</span>
-                    <span class="text-xs text-indigo-300/80">Best for Tech & Design Roles</span>
-                </div>
-                
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="font-semibold text-xl">Modern</div>
-                        <div class="text-sm font-semibold text-green-400">Free to Use</div>
-                    </div>
-                    <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
-                </div>
+```
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- Existing Templates -->
+    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="modern" data-premium="false">
+        <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern Template" class="w-full h-52 object-cover object-top"/>
+        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-indigo-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">ATS Safe</span>
+                <span class="text-xs text-indigo-300/80">Best for Tech & Design Roles</span>
             </div>
-        </article>
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="font-semibold text-xl">Modern</div>
+                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
+                </div>
+                <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
+            </div>
+        </div>
+    </article>
 
-        <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="professional" data-premium="false">
-            <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional Template" class="w-full h-52 object-cover object-top"/>
-            <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-                
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-blue-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Corporate Ready</span>
-                    <span class="text-xs text-indigo-300/80">Ideal for Finance & Management</span>
-                </div>
-                
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="font-semibold text-xl">Professional</div>
-                        <div class="text-sm font-semibold text-green-400">Free to Use</div>
-                    </div>
-                    <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
-                </div>
+    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="professional" data-premium="false">
+        <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional Template" class="w-full h-52 object-cover object-top"/>
+        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-blue-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Corporate Ready</span>
+                <span class="text-xs text-indigo-300/80">Ideal for Finance & Management</span>
             </div>
-        </article>
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="font-semibold text-xl">Professional</div>
+                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
+                </div>
+                <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
+            </div>
+        </div>
+    </article>
 
-        <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="minimalist" data-premium="true">
-            <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist Template" class="w-full h-52 object-cover object-top"/>
-            
-            <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
-                <div class="text-center">
-                    <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
-                    
-                    <div class="text-xl font-bold mb-1">Minimalist</div>
-                    <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
-                    
-                    <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
-                </div>
+    <!-- 🆕 New ATS Template -->
+    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="ats" data-premium="false">
+        <img src="https://i.imgur.com/zNMqQdX.png" alt="ATS Template" class="w-full h-52 object-cover object-top"/>
+        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-green-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">ATS Optimized</span>
+                <span class="text-xs text-indigo-300/80">Recruiter & Bot Friendly</span>
             </div>
-            
-            <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-                 <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Simple & Clean</span>
-                    <span class="text-xs text-indigo-300/80">Focus on Content</span>
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="font-semibold text-xl">ATS Template</div>
+                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
                 </div>
-                <div class="font-semibold text-xl">Minimalist</div>
+                <button class="select-btn px-4 py-1.5 bg-green-600 hover:bg-green-500 rounded-lg text-sm font-semibold transition">Select</button>
             </div>
-        </article>
+        </div>
+    </article>
 
-        <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="creative" data-premium="true">
-            <img src="https://i.imgur.com/1XGu27s.png" alt="Creative Template" class="w-full h-52 object-cover object-top"/>
-            
-            <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
-                <div class="text-center">
-                    <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
-                    
-                    <div class="text-xl font-bold mb-1">Creative</div>
-                    <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
-                    
-                    <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
-                </div>
+    <!-- Premium Templates (unchanged) -->
+    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="minimalist" data-premium="true">
+        <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist Template" class="w-full h-52 object-cover object-top"/>
+        <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
+            <div class="text-center">
+                <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
+                <div class="text-xl font-bold mb-1">Minimalist</div>
+                <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
+                <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
             </div>
-            
-            <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-purple-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Visual Flow</span>
-                    <span class="text-xs text-indigo-300/80">Great for Career Changes</span>
-                </div>
-                <div class="font-semibold text-xl">Creative</div>
+        </div>
+        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Simple & Clean</span>
+                <span class="text-xs text-indigo-300/80">Focus on Content</span>
             </div>
-        </article>
-        
-    </section>
+            <div class="font-semibold text-xl">Minimalist</div>
+        </div>
+    </article>
 
-    <div class="mt-12 text-center text-lg text-indigo-200/60">
-        <p>After selecting, you’ll be taken directly to the builder.</p>
-        <p class="mt-2">Have questions about the Pro plan? <a href="#" class="text-yellow-400 hover:text-yellow-300 transition underline">Check out our features.</a></p>
-    </div>
+    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="creative" data-premium="true">
+        <img src="https://i.imgur.com/1XGu27s.png" alt="Creative Template" class="w-full h-52 object-cover object-top"/>
+        <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
+            <div class="text-center">
+                <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
+                <div class="text-xl font-bold mb-1">Creative</div>
+                <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
+                <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
+            </div>
+        </div>
+        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-purple-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Visual Flow</span>
+                <span class="text-xs text-indigo-300/80">Great for Career Changes</span>
+            </div>
+            <div class="font-semibold text-xl">Creative</div>
+        </div>
+    </article>
+</section>
+
+<div class="mt-12 text-center text-lg text-indigo-200/60">
+    <p>After selecting, you’ll be taken directly to the builder.</p>
+    <p class="mt-2">Have questions about the Pro plan? <a href="#" class="text-yellow-400 hover:text-yellow-300 transition underline">Check out our features.</a></p>
+</div>
+```
 
 </main>
 
 <script>
-// --- TEMPLATE SELECTION LOGIC ---
-
-// Get all template cards
 const templateCards = document.querySelectorAll('[data-template]');
-
 templateCards.forEach(card => {
     const selectBtn = card.querySelector('.select-btn');
     const unlockBtn = card.querySelector('.unlock-btn');
     const isPremium = card.dataset.premium === 'true';
 
-    // Handler for 'Select' button click (Free Templates)
     if(selectBtn){
         selectBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent the card click from also firing
+            e.stopPropagation();
             selectTemplate(card.dataset.template);
         });
     }
 
-    // Handler for 'Unlock' button click (Premium Templates)
     if(unlockBtn){
         unlockBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent the card click from also firing
-            // TODO: Implement a proper modal or redirect to a pricing page
+            e.stopPropagation();
             alert('Premium template — Upgrade to Pro coming soon! Please use a free template for now.');
         });
     }
 
-    // Handler for clicking the entire card area
     card.addEventListener('click', (e) => {
-        if (isPremium) {
-             // If premium, and not clicking the unlock button (which is caught above), do nothing
-             // to prevent accidental clicks triggering an alert/modal.
-             return; 
-        }
-        
-        // If it's a free template, clicking the card selects it
+        if (isPremium) return;
         selectTemplate(card.dataset.template);
     });
 });
 
-/**
- * Saves the selected template and redirects to the builder.
- * @param {string} tpl The template identifier (e.g., 'modern', 'professional')
- */
 function selectTemplate(tpl) {
     localStorage.setItem('runvai_selected_template', tpl);
     location.href = 'builder.html';
 }
 
-// --- OPTIONAL SCROLL LOGIC ---
-// if user came from index with hash, scroll to premium
 if(location.hash === '#premium') {
     const el = document.querySelector('[data-template][data-premium="true"]');
     if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
