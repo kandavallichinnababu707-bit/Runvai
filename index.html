@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Runvai — Build Job-Winning Resumes</title>
-    <!-- Load Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* Custom Font Configuration for Inter */
         html { font-family: 'Inter', sans-serif; }
+        
         /* Professional color palette */
         :root {
             --color-primary: #1D4ED8; /* Blue-700 for main actions */
@@ -22,38 +28,49 @@
         .resume-shadow {
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.08);
         }
+        
+        /* Utility class for hiding the mobile menu */
+        .mobile-menu-hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
 
-    <!-- Header / Navigation -->
-    <header class="sticky top-0 bg-white shadow-md z-10">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <header class="sticky top-0 bg-white shadow-md z-20"> <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center space-x-2">
-                <!-- Professional Logo (Simple RV icon with full name) -->
                 <div class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">RV</div>
                 <span class="text-xl font-extrabold tracking-tight">Runvai</span>
             </div>
             <div class="hidden sm:flex items-center space-x-6">
-                <a href="#features" class="text-sm font-medium hover:text-primary">Features</a>
-                <a href="#templates" class="text-sm font-medium hover:text-primary">Templates</a>
-                <a href="#" class="text-sm font-medium hover:text-primary">Pricing</a>
+                <a href="#features" class="text-sm font-medium hover:text-primary transition">Features</a>
+                <a href="#templates" class="text-sm font-medium hover:text-primary transition">Templates</a>
+                <a href="#" class="text-sm font-medium hover:text-primary transition">Pricing</a>
                 <a href="#" class="px-4 py-2 text-sm font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark transition duration-150 shadow-md">Start Building Free</a>
             </div>
-            <!-- Mobile Menu Placeholder -->
-            <button class="sm:hidden p-2 rounded-lg hover:bg-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <button id="mobile-menu-button" class="sm:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle navigation menu">
+                <svg id="menu-icon" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </nav>
+        
+        <div id="mobile-menu" class="mobile-menu-hidden sm:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full z-10">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#features" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Features</a>
+                <a href="#templates" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Templates</a>
+                <a href="#" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Pricing</a>
+                <a href="#" class="block py-3 mt-2 text-center text-base font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark transition duration-150">Start Building Free</a>
+            </div>
+        </div>
     </header>
 
     <main>
-        <!-- Hero Section: Clear Value Proposition -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-                <!-- Left Column: Headline and CTA -->
                 <div class="lg:col-span-6 space-y-6">
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
                         Build a <span class="text-primary">Job-Winning</span> Resume — Fast & ATS-Friendly
@@ -74,16 +91,13 @@
                     </p>
                 </div>
 
-                <!-- Right Column: Resume Preview -->
                 <div class="lg:col-span-6 mt-12 lg:mt-0 flex justify-center lg:justify-end">
-                    <!-- Placeholder for the Minimalist Resume Preview -->
                     <div class="w-full max-w-md h-[500px] bg-white rounded-xl p-6 resume-shadow border border-gray-100 transform hover:scale-[1.02] transition duration-300">
                         <div class="text-center mb-6">
                             <h2 class="text-2xl font-bold text-gray-900">Jane Doe</h2>
                             <p class="text-primary font-medium">Senior Product Designer | 5 Years Experience</p>
                         </div>
                         <div class="grid grid-cols-12 gap-4 h-full">
-                            <!-- Left Sidebar (Skills, Contact) -->
                             <div class="col-span-4 text-sm space-y-4 pr-3 border-r border-gray-200">
                                 <h3 class="font-bold text-primary border-b border-gray-300 pb-1 mb-2">CONTACT</h3>
                                 <p>+91 XXX XXXX XX</p>
@@ -98,7 +112,6 @@
                                     <li>Agile/Scrum</li>
                                 </ul>
                             </div>
-                            <!-- Right Content (Experience, Education) -->
                             <div class="col-span-8 text-sm space-y-6 overflow-y-auto">
                                 <h3 class="font-bold text-primary border-b border-gray-300 pb-1">SUMMARY</h3>
                                 <p class="text-gray-700">Highly creative and data-driven Product Designer with 5+ years of experience specializing in B2B SaaS platforms. Proven ability to translate complex requirements into intuitive, user-friendly designs that drive adoption and customer retention.</p>
@@ -112,7 +125,7 @@
                                         <li>Mentored junior designers on UI/UX best practices and design systems implementation.</li>
                                     </ul>
                                 </div>
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">EDUCATION</h3>
+                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 pt-4">EDUCATION</h3>
                                 <div class="space-y-1">
                                     <p class="font-semibold">B.A. Graphic Design</p>
                                     <p class="text-xs text-gray-500">2016 — 2020 | State University</p>
@@ -124,13 +137,13 @@
             </div>
         </section>
 
-        <!-- Feature Section: Trust and Value -->
+        <hr class="border-gray-200" />
+
         <section id="features" class="bg-white py-16 lg:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Why Choose Runvai?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                    <!-- Feature 1: ATS Compliance -->
                     <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
                         <div class="text-primary mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -142,7 +155,6 @@
                         <p class="text-gray-600">Our templates are tested against Applicant Tracking Systems (ATS) to ensure your resume is parsed correctly, every time.</p>
                     </div>
 
-                    <!-- Feature 2: Clean Exports -->
                     <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
                         <div class="text-primary mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -153,7 +165,6 @@
                         <p class="text-gray-600">Download high-resolution, text-based PDF and DOCX files that look perfect on screen and when printed (DOCX is a premium feature).</p>
                     </div>
 
-                    <!-- Feature 3: Focused Editor (Ready for AI) -->
                     <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
                         <div class="text-primary mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -167,12 +178,12 @@
             </div>
         </section>
 
-        <!-- Template Section (The next focus area) -->
+        <hr class="border-gray-200" />
+
         <section id="templates" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Our Templates Get You Noticed</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- Template Card 1 (Minimalist - Free) -->
                 <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
                     <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
                         MINIMALIST (Free) - Simple Two-Column Layout
@@ -184,9 +195,7 @@
                     </a>
                 </div>
 
-                <!-- Template Card 2 (Modern - Premium) -->
-                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4 relative">
-                    <span class="absolute top-0 right-0 mt-4 mr-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">PREMIUM</span>
+                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4 relative opacity-75"> <span class="absolute top-0 right-0 mt-4 mr-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">PREMIUM</span>
                     <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
                         MODERN - Bold Color, Clear Sections
                     </div>
@@ -197,7 +206,6 @@
                     </a>
                 </div>
 
-                <!-- Template Card 3 (Technical/Functional) -->
                 <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
                     <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
                         TECHNICAL - Skills Focused
@@ -219,18 +227,49 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
             <p>&copy; 2025 Runvai. All rights reserved.</p>
             <div class="flex space-x-6">
-                <a href="#" class="hover:text-primary">Pricing</a>
-                <a href="#" class="hover:text-primary">Privacy Policy</a>
-                <a href="#" class="hover:text-primary">Terms of Service</a>
-                <a href="#" class="hover:text-primary">Contact</a>
+                <a href="#" class="hover:text-primary transition">Pricing</a>
+                <a href="#" class="hover:text-primary transition">Privacy Policy</a>
+                <a href="#" class="hover:text-primary transition">Terms of Service</a>
+                <a href="#" class="hover:text-primary transition">Contact</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        button.addEventListener('click', () => {
+            const isHidden = menu.classList.toggle('mobile-menu-hidden');
+            
+            // Toggle icons based on visibility
+            if (isHidden) {
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                button.setAttribute('aria-expanded', 'false');
+            } else {
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Close menu when a link inside it is clicked (for smoother navigation)
+        const mobileLinks = menu.querySelectorAll('a[href^="#"]');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('mobile-menu-hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                button.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 </html>
