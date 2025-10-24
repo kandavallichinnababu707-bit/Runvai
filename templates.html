@@ -1,179 +1,221 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Runvai — Templates</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runvai — Multi-Template Resume Builder</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); backdrop-filter: blur(6px) saturate(120%); }
-    .locked-overlay { background: linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.75)); }
-    .card-hover { transition: transform .22s ease, box-shadow .22s ease; }
-    .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 16px 40px rgba(0,0,0,0.7); }
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-[#071029] to-[#030414] text-white">
+<body class="bg-gray-50 font-sans">
 
-<header class="max-w-6xl mx-auto p-6 flex items-center justify-between z-10 sticky top-0 bg-[#071029]/90 backdrop-blur-sm">
-    <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg font-bold">RV</div>
-        <div>
-            <h1 class="font-bold text-xl">Runvai</h1>
-            <div class="text-xs text-indigo-200/60">Choose a template</div>
-        </div>
-    </div>
-    <nav>
-        <a href="index.html" class="text-indigo-200/60 hover:text-white mr-4 transition">Home</a>
-        <a href="builder.html" class="px-4 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-lg hover:scale-[1.02] transition">Go to Builder</a>
-    </nav>
+<!-- Header -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold text-indigo-600">Runvai</h1>
+  </div>
 </header>
 
-<main class="max-w-6xl mx-auto p-6">
-    <section class="mb-10 text-center">
-        <h2 class="text-4xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-300">Pick Your Winning Template</h2>
-        <p class="text-lg text-indigo-200/70">Free templates are ready instantly. Premium templates unlock advanced designs and features with a Pro plan.</p>
-    </section>
+<div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-6">
 
-```
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <!-- Existing Templates -->
-    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="modern" data-premium="false">
-        <img src="https://i.imgur.com/9LQYV5x.png" alt="Modern Template" class="w-full h-52 object-cover object-top"/>
-        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-indigo-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">ATS Safe</span>
-                <span class="text-xs text-indigo-300/80">Best for Tech & Design Roles</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <div>
-                    <div class="font-semibold text-xl">Modern</div>
-                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
-                </div>
-                <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
-            </div>
-        </div>
-    </article>
+  <!-- Sidebar Form -->
+  <div class="md:w-1/3 bg-white shadow-lg rounded-lg p-6 space-y-6">
+    <h2 class="text-xl font-bold mb-4">Resume Builder</h2>
 
-    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="professional" data-premium="false">
-        <img src="https://i.imgur.com/TS6g1Yt.png" alt="Professional Template" class="w-full h-52 object-cover object-top"/>
-        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-blue-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Corporate Ready</span>
-                <span class="text-xs text-indigo-300/80">Ideal for Finance & Management</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <div>
-                    <div class="font-semibold text-xl">Professional</div>
-                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
-                </div>
-                <button class="select-btn px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-sm font-semibold transition">Select</button>
-            </div>
-        </div>
-    </article>
+    <!-- Template Selector -->
+    <div>
+      <label class="font-medium mb-2 block">Choose Template</label>
+      <select id="templateSelect" class="w-full border rounded px-3 py-2">
+        <option value="normalFree">Normal Free</option>
+        <option value="atsFree">ATS Optimized Free</option>
+        <option value="modernPremium">Modern Pro (Premium)</option>
+        <option value="functionalPremium">Functional (Premium)</option>
+      </select>
+    </div>
 
-    <!-- 🆕 New ATS Template -->
-    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" data-template="ats" data-premium="false">
-        <img src="https://i.imgur.com/zNMqQdX.png" alt="ATS Template" class="w-full h-52 object-cover object-top"/>
-        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-green-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">ATS Optimized</span>
-                <span class="text-xs text-indigo-300/80">Recruiter & Bot Friendly</span>
-            </div>
-            <div class="flex items-center justify-between">
-                <div>
-                    <div class="font-semibold text-xl">ATS Template</div>
-                    <div class="text-sm font-semibold text-green-400">Free to Use</div>
-                </div>
-                <button class="select-btn px-4 py-1.5 bg-green-600 hover:bg-green-500 rounded-lg text-sm font-semibold transition">Select</button>
-            </div>
-        </div>
-    </article>
+    <!-- Personal Info -->
+    <div>
+      <label class="font-medium mb-2 block">Full Name</label>
+      <input type="text" id="fullName" class="w-full border rounded px-3 py-2" placeholder="Jane Doe">
+    </div>
 
-    <!-- Premium Templates (unchanged) -->
-    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="minimalist" data-premium="true">
-        <img src="https://i.imgur.com/6vXx4Dh.png" alt="Minimalist Template" class="w-full h-52 object-cover object-top"/>
-        <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
-            <div class="text-center">
-                <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
-                <div class="text-xl font-bold mb-1">Minimalist</div>
-                <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
-                <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
-            </div>
-        </div>
-        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Simple & Clean</span>
-                <span class="text-xs text-indigo-300/80">Focus on Content</span>
-            </div>
-            <div class="font-semibold text-xl">Minimalist</div>
-        </div>
-    </article>
+    <div>
+      <label class="font-medium mb-2 block">Email</label>
+      <input type="text" id="email" class="w-full border rounded px-3 py-2" placeholder="jane@example.com">
+    </div>
 
-    <article class="card-hover relative rounded-xl overflow-hidden shadow-2xl" data-template="creative" data-premium="true">
-        <img src="https://i.imgur.com/1XGu27s.png" alt="Creative Template" class="w-full h-52 object-cover object-top"/>
-        <div class="absolute inset-0 locked-overlay flex flex-col items-center justify-center p-4">
-            <div class="text-center">
-                <svg class="w-8 h-8 mx-auto mb-2 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M18 10h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-9-3a3 3 0 016 0v3H9V7z"/></svg>
-                <div class="text-xl font-bold mb-1">Creative</div>
-                <div class="text-sm text-yellow-300 mb-4">Premium Design</div>
-                <button class="unlock-btn px-5 py-2 bg-yellow-500 text-gray-900 font-bold rounded-lg hover:bg-yellow-400 transition shadow-xl">Unlock Pro</button>
-            </div>
-        </div>
-        <div class="p-4 bg-[#1a1f33] border-t border-indigo-700/50">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-purple-600 px-2 py-0.5 rounded-full text-xs font-semibold text-white/90">Visual Flow</span>
-                <span class="text-xs text-indigo-300/80">Great for Career Changes</span>
-            </div>
-            <div class="font-semibold text-xl">Creative</div>
-        </div>
-    </article>
-</section>
+    <div>
+      <label class="font-medium mb-2 block">Phone</label>
+      <input type="text" id="phone" class="w-full border rounded px-3 py-2" placeholder="+91 9876543210">
+    </div>
 
-<div class="mt-12 text-center text-lg text-indigo-200/60">
-    <p>After selecting, you’ll be taken directly to the builder.</p>
-    <p class="mt-2">Have questions about the Pro plan? <a href="#" class="text-yellow-400 hover:text-yellow-300 transition underline">Check out our features.</a></p>
+    <!-- Experience -->
+    <div id="experienceContainer">
+      <label class="font-medium mb-2 block">Experience</label>
+      <div class="mb-2 flex gap-2">
+        <textarea class="w-full border rounded px-3 py-2 experienceField" rows="2" placeholder="Job title, Company, Year"></textarea>
+        <button type="button" id="addExperience" class="bg-indigo-600 text-white px-2 rounded">+</button>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div id="educationContainer">
+      <label class="font-medium mb-2 block">Education</label>
+      <div class="mb-2 flex gap-2">
+        <textarea class="w-full border rounded px-3 py-2 educationField" rows="2" placeholder="Degree, College, Year"></textarea>
+        <button type="button" id="addEducation" class="bg-indigo-600 text-white px-2 rounded">+</button>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div>
+      <label class="font-medium mb-2 block">Skills (comma separated)</label>
+      <input type="text" id="skills" class="w-full border rounded px-3 py-2" placeholder="HTML, CSS, JS">
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-col gap-3">
+      <button id="downloadBtn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 font-medium">Download PDF</button>
+    </div>
+  </div>
+
+  <!-- Live Preview -->
+  <div class="md:w-2/3 bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4">Live Preview</h2>
+    <div id="resumePreview" class="border p-6 space-y-4">
+
+      <h1 id="previewName" class="text-2xl font-bold text-gray-800">Jane Doe</h1>
+      <p id="previewEmail" class="text-gray-600">jane@example.com</p>
+      <p id="previewPhone" class="text-gray-600">+91 9876543210</p>
+      <hr>
+
+      <div id="previewExperienceSection">
+        <h3 class="font-bold text-gray-700">Experience</h3>
+        <p class="previewExperience">Job title, Company, Year</p>
+      </div>
+
+      <div id="previewEducationSection">
+        <h3 class="font-bold text-gray-700">Education</h3>
+        <p class="previewEducation">Degree, College, Year</p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-gray-700">Skills</h3>
+        <p id="previewSkills">HTML, CSS, JS</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-```
-
-</main>
 
 <script>
-const templateCards = document.querySelectorAll('[data-template]');
-templateCards.forEach(card => {
-    const selectBtn = card.querySelector('.select-btn');
-    const unlockBtn = card.querySelector('.unlock-btn');
-    const isPremium = card.dataset.premium === 'true';
+  // Elements
+  const fullName = document.getElementById('fullName');
+  const email = document.getElementById('email');
+  const phone = document.getElementById('phone');
+  const skills = document.getElementById('skills');
+  const templateSelect = document.getElementById('templateSelect');
 
-    if(selectBtn){
-        selectBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            selectTemplate(card.dataset.template);
-        });
-    }
+  const previewName = document.getElementById('previewName');
+  const previewEmail = document.getElementById('previewEmail');
+  const previewPhone = document.getElementById('previewPhone');
+  const previewSkills = document.getElementById('previewSkills');
+  const resumePreview = document.getElementById('resumePreview');
 
-    if(unlockBtn){
-        unlockBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            alert('Premium template — Upgrade to Pro coming soon! Please use a free template for now.');
-        });
-    }
+  const experienceContainer = document.getElementById('experienceContainer');
+  const educationContainer = document.getElementById('educationContainer');
+  const previewExperienceSection = document.getElementById('previewExperienceSection');
+  const previewEducationSection = document.getElementById('previewEducationSection');
 
-    card.addEventListener('click', (e) => {
-        if (isPremium) return;
-        selectTemplate(card.dataset.template);
+  // Update preview
+  fullName.addEventListener('input', () => previewName.textContent = fullName.value || "Jane Doe");
+  email.addEventListener('input', () => previewEmail.textContent = email.value || "jane@example.com");
+  phone.addEventListener('input', () => previewPhone.textContent = phone.value || "+91 9876543210");
+  skills.addEventListener('input', () => previewSkills.textContent = skills.value || "HTML, CSS, JS");
+
+  // Dynamic experience
+  function updateExperiencePreview() {
+    const allExp = document.querySelectorAll('.experienceField');
+    previewExperienceSection.innerHTML = '<h3 class="font-bold text-gray-700">Experience</h3>';
+    allExp.forEach(exp => {
+      const p = document.createElement('p');
+      p.textContent = exp.value || "Job title, Company, Year";
+      p.className = "previewExperience";
+      previewExperienceSection.appendChild(p);
     });
-});
+  }
 
-function selectTemplate(tpl) {
-    localStorage.setItem('runvai_selected_template', tpl);
-    location.href = 'builder.html';
-}
+  // Dynamic education
+  function updateEducationPreview() {
+    const allEdu = document.querySelectorAll('.educationField');
+    previewEducationSection.innerHTML = '<h3 class="font-bold text-gray-700">Education</h3>';
+    allEdu.forEach(edu => {
+      const p = document.createElement('p');
+      p.textContent = edu.value || "Degree, College, Year";
+      p.className = "previewEducation";
+      previewEducationSection.appendChild(p);
+    });
+  }
 
-if(location.hash === '#premium') {
-    const el = document.querySelector('[data-template][data-premium="true"]');
-    if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
-}
+  // Add new experience field
+  document.getElementById('addExperience').addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = "mb-2 flex gap-2";
+    div.innerHTML = `<textarea class="w-full border rounded px-3 py-2 experienceField" rows="2" placeholder="Job title, Company, Year"></textarea>
+    <button type="button" class="bg-red-600 text-white px-2 rounded removeExp">-</button>`;
+    experienceContainer.appendChild(div);
+
+    div.querySelector('.experienceField').addEventListener('input', updateExperiencePreview);
+    div.querySelector('.removeExp').addEventListener('click', () => {
+      div.remove();
+      updateExperiencePreview();
+    });
+  });
+
+  // Add new education field
+  document.getElementById('addEducation').addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = "mb-2 flex gap-2";
+    div.innerHTML = `<textarea class="w-full border rounded px-3 py-2 educationField" rows="2" placeholder="Degree, College, Year"></textarea>
+    <button type="button" class="bg-red-600 text-white px-2 rounded removeEdu">-</button>`;
+    educationContainer.appendChild(div);
+
+    div.querySelector('.educationField').addEventListener('input', updateEducationPreview);
+    div.querySelector('.removeEdu').addEventListener('click', () => {
+      div.remove();
+      updateEducationPreview();
+    });
+  });
+
+  // Initial input listeners for experience and education
+  document.querySelectorAll('.experienceField').forEach(exp => exp.addEventListener('input', updateExperiencePreview));
+  document.querySelectorAll('.educationField').forEach(edu => edu.addEventListener('input', updateEducationPreview));
+
+  // Template switch
+  templateSelect.addEventListener('change', () => {
+    const val = templateSelect.value;
+    resumePreview.className = "border p-6 space-y-4";
+
+    if(val === 'normalFree'){
+      resumePreview.classList.add('text-gray-800', 'font-sans');
+    } else if(val === 'atsFree'){
+      resumePreview.classList.add('text-gray-900', 'font-serif');
+    } else if(val === 'modernPremium'){
+      resumePreview.classList.add('text-indigo-700', 'font-sans');
+    } else if(val === 'functionalPremium'){
+      resumePreview.classList.add('text-gray-900', 'font-mono');
+    }
+  });
+
+  // Download PDF / DOCX
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const val = templateSelect.value;
+    if(val.includes('Premium')){
+      alert("Premium template selected! PDF + DOCX download coming soon in Pro version.");
+    }
+    html2pdf().from(resumePreview).set({margin:0.5, filename:'Runvai_Resume.pdf'}).save();
+  });
 </script>
 
 </body>
