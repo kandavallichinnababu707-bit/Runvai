@@ -1,275 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Runvai — Build Job-Winning Resumes</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Custom Font Configuration for Inter */
-        html { font-family: 'Inter', sans-serif; }
-        
-        /* Professional color palette */
-        :root {
-            --color-primary: #1D4ED8; /* Blue-700 for main actions */
-            --color-secondary: #E5E7EB; /* Gray-200 for backgrounds */
-            --color-text: #1F2937; /* Gray-800 */
-        }
-        .text-primary { color: var(--color-primary); }
-        .bg-primary { background-color: var(--color-primary); }
-        .hover\:bg-primary-dark:hover { background-color: #1E40AF; } /* Blue-800 */
-
-        .resume-shadow {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-        
-        /* Utility class for hiding the mobile menu */
-        .mobile-menu-hidden {
-            display: none;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Runvai — Build Resumes with AI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* small custom styles for the futuristic look */
+  .glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .float-anim {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen">
+<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#081427] to-[#020617] text-white antialiased">
 
-    <header class="sticky top-0 bg-white shadow-md z-20"> <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-            <div class="flex items-center space-x-2">
-                <div class="h-8 w-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">RV</div>
-                <span class="text-xl font-extrabold tracking-tight">Runvai</span>
-            </div>
-            <div class="hidden sm:flex items-center space-x-6">
-                <a href="#features" class="text-sm font-medium hover:text-primary transition">Features</a>
-                <a href="#templates" class="text-sm font-medium hover:text-primary transition">Templates</a>
-                <a href="#" class="text-sm font-medium hover:text-primary transition">Pricing</a>
-                <a href="#" class="px-4 py-2 text-sm font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark transition duration-150 shadow-md">Start Building Free</a>
-            </div>
-            <button id="mobile-menu-button" class="sm:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle navigation menu">
-                <svg id="menu-icon" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-                <svg id="close-icon" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </nav>
-        
-        <div id="mobile-menu" class="mobile-menu-hidden sm:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full z-10">
-            <div class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#features" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Features</a>
-                <a href="#templates" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Templates</a>
-                <a href="#" class="block py-2 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Pricing</a>
-                <a href="#" class="block py-3 mt-2 text-center text-base font-semibold rounded-lg text-white bg-primary hover:bg-primary-dark transition duration-150">Start Building Free</a>
-            </div>
+  <!-- header -->
+  <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">RV</div>
+      <div>
+        <h1 class="font-extrabold text-xl tracking-tight">Runvai</h1>
+        <div class="text-xs text-indigo-200/60">Smart resume builder</div>
+      </div>
+    </div>
+
+    <nav class="flex items-center gap-4">
+      <a href="templates.html" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-sm font-semibold shadow hover:scale-105 transition transform">Start Building</a>
+      <a href="https://github.com" target="_blank" class="text-sm text-indigo-200/70 hover:text-white">Docs</a>
+    </nav>
+  </header>
+
+  <!-- hero -->
+  <main class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
+    <section class="space-y-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        Build a job-winning resume — <span class="text-indigo-400">fast</span> and <span class="text-purple-400">beautiful</span>
+      </h2>
+      <p class="text-slate-300 max-w-xl">
+        Runvai blends clean design, ATS-friendly templates, and futuristic AI tools to help you land interviews. Choose a template, tune with AI, export as PDF — perfect for students and pros.
+      </p>
+
+      <div class="flex gap-4">
+        <a href="templates.html" class="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white font-semibold shadow-lg hover:scale-105 transition">
+          Start Free
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <button onclick="location.href='templates.html#premium'" class="px-5 py-3 bg-transparent ring-1 ring-indigo-500 rounded-lg text-indigo-200 hover:bg-indigo-900/20 transition">See Premium</button>
+      </div>
+
+      <div class="mt-6 grid grid-cols-2 gap-4 text-xs text-indigo-200/60">
+        <div class="glass rounded-lg p-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-indigo-600/30 flex items-center justify-center">⚡</div>
+          <div>
+            <div class="font-semibold">Fast exports</div>
+            <div class="text-xs">Text-based PDF & DOCX exports</div>
+          </div>
         </div>
-    </header>
 
-    <main>
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-                <div class="lg:col-span-6 space-y-6">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900">
-                        Build a <span class="text-primary">Job-Winning</span> Resume — Fast & ATS-Friendly
-                    </h1>
-                    <p class="text-lg text-gray-600 max-w-lg">
-                        Runvai combines professional templates, AI optimization tools (coming soon), and easy exports to help you land interviews, not just applications.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                        <a href="#" class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-xl hover:bg-primary-dark transition duration-200 text-center text-lg">
-                            Start Building Now (It's Free)
-                        </a>
-                        <a href="#" class="text-primary border-2 border-primary font-semibold py-3 px-8 rounded-xl hover:bg-gray-100 transition duration-200 text-center text-lg">
-                            See Premium Features
-                        </a>
-                    </div>
-                    <p class="text-sm text-gray-500 pt-2">
-                        No credit card required. Free plan limited to one template and PDF export.
-                    </p>
-                </div>
-
-                <div class="lg:col-span-6 mt-12 lg:mt-0 flex justify-center lg:justify-end">
-                    <div class="w-full max-w-md h-[500px] bg-white rounded-xl p-6 resume-shadow border border-gray-100 transform hover:scale-[1.02] transition duration-300">
-                        <div class="text-center mb-6">
-                            <h2 class="text-2xl font-bold text-gray-900">Jane Doe</h2>
-                            <p class="text-primary font-medium">Senior Product Designer | 5 Years Experience</p>
-                        </div>
-                        <div class="grid grid-cols-12 gap-4 h-full">
-                            <div class="col-span-4 text-sm space-y-4 pr-3 border-r border-gray-200">
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 mb-2">CONTACT</h3>
-                                <p>+91 XXX XXXX XX</p>
-                                <p>jane.doe@email.com</p>
-                                <p>linkedin.com/in/janedoe</p>
-
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 mb-2 pt-4">SKILLS</h3>
-                                <ul class="list-none space-y-1 pl-0">
-                                    <li>Figma, Sketch</li>
-                                    <li>User Research</li>
-                                    <li>Prototyping</li>
-                                    <li>Agile/Scrum</li>
-                                </ul>
-                            </div>
-                            <div class="col-span-8 text-sm space-y-6 overflow-y-auto">
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">SUMMARY</h3>
-                                <p class="text-gray-700">Highly creative and data-driven Product Designer with 5+ years of experience specializing in B2B SaaS platforms. Proven ability to translate complex requirements into intuitive, user-friendly designs that drive adoption and customer retention.</p>
-
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1">EXPERIENCE</h3>
-                                <div class="space-y-1">
-                                    <p class="font-semibold">Lead Designer, TechCorp</p>
-                                    <p class="text-xs text-gray-500">2020 — Present | San Francisco, CA</p>
-                                    <ul class="list-disc pl-5 text-gray-700 space-y-1">
-                                        <li>Redesigned core product dashboard, leading to a 25% increase in feature discovery and usage.</li>
-                                        <li>Mentored junior designers on UI/UX best practices and design systems implementation.</li>
-                                    </ul>
-                                </div>
-                                <h3 class="font-bold text-primary border-b border-gray-300 pb-1 pt-4">EDUCATION</h3>
-                                <div class="space-y-1">
-                                    <p class="font-semibold">B.A. Graphic Design</p>
-                                    <p class="text-xs text-gray-500">2016 — 2020 | State University</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-200" />
-
-        <section id="features" class="bg-white py-16 lg:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Why Choose Runvai?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
-                        <div class="text-primary mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25A4.75 4.75 0 0 1 15 7.125a4.75 4.75 0 0 1-4.875 4.875A4.75 4.75 0 0 1 5.25 7.125a4.75 4.75 0 0 1 4.875-4.875Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5c2.75 0 5.244.73 7.07 1.83.693.42 1.356 1.01 1.954 1.764.135.166.307.316.502.433.09.052.186.096.287.133.447.164.887.277 1.32.337.214.03.429.045.645.045h1.25V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21v-3.75c0-.621.504-1.125 1.125-1.125h1.25c.165 0 .33-.01.49-.03a4.75 4.75 0 0 1 4.875-4.875Z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">ATS-Friendly Design</h3>
-                        <p class="text-gray-600">Our templates are tested against Applicant Tracking Systems (ATS) to ensure your resume is parsed correctly, every time.</p>
-                    </div>
-
-                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
-                        <div class="text-primary mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Crisp PDF & DOCX</h3>
-                        <p class="text-gray-600">Download high-resolution, text-based PDF and DOCX files that look perfect on screen and when printed (DOCX is a premium feature).</p>
-                    </div>
-
-                    <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary">
-                        <div class="text-primary mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.862 4.487Zm0 0-1.5 1.5m1.5-1.5v1.5m-1.5-1.5h1.5" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Sleek, Real-Time Editor</h3>
-                        <p class="text-gray-600">Forget clunky software. See every change instantly with a clean, focused editor designed for speed and clarity.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-200" />
-
-        <section id="templates" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-12">Our Templates Get You Noticed</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
-                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
-                        MINIMALIST (Free) - Simple Two-Column Layout
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900">The Minimalist</h3>
-                    <p class="text-gray-600 text-sm">Our most popular ATS-friendly design. Clean, classic, and works everywhere.</p>
-                    <a href="#" class="block w-full text-center py-2 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
-                        Select Template
-                    </a>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4 relative opacity-75"> <span class="absolute top-0 right-0 mt-4 mr-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">PREMIUM</span>
-                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
-                        MODERN - Bold Color, Clear Sections
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900">The Modern Pro</h3>
-                    <p class="text-gray-600 text-sm">A contemporary design with subtle color accents and strong visual hierarchy.</p>
-                    <a href="#" class="block w-full text-center py-2 bg-gray-200 text-gray-700 rounded-lg font-medium cursor-not-allowed">
-                        Upgrade to Use
-                    </a>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-xl p-6 space-y-4">
-                    <div class="w-full h-64 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 text-sm">
-                        TECHNICAL - Skills Focused
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900">The Functional</h3>
-                    <p class="text-gray-600 text-sm">Highlights core competencies over timeline. Ideal for career changers.</p>
-                    <a href="#" class="block w-full text-center py-2 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
-                        Select Template
-                    </a>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="text-lg font-semibold text-primary hover:text-primary-dark transition duration-150">
-                    Browse All Templates →
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-800 text-white py-10 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
-            <p>&copy; 2025 Runvai. All rights reserved.</p>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-primary transition">Pricing</a>
-                <a href="#" class="hover:text-primary transition">Privacy Policy</a>
-                <a href="#" class="hover:text-primary transition">Terms of Service</a>
-                <a href="#" class="hover:text-primary transition">Contact</a>
-            </div>
+        <div class="glass rounded-lg p-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-purple-600/30 flex items-center justify-center">🔒</div>
+          <div>
+            <div class="font-semibold">Secure by default</div>
+            <div class="text-xs">Google login & private storage</div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const button = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
+    <section class="relative">
+      <div class="absolute -right-8 -top-6 w-72 h-72 rounded-2xl bg-gradient-to-br from-indigo-500/30 to-purple-500/20 blur-3xl opacity-60 float-anim"></div>
 
-        button.addEventListener('click', () => {
-            const isHidden = menu.classList.toggle('mobile-menu-hidden');
-            
-            // Toggle icons based on visibility
-            if (isHidden) {
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                button.setAttribute('aria-expanded', 'false');
-            } else {
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-                button.setAttribute('aria-expanded', 'true');
-            }
-        });
-        
-        // Close menu when a link inside it is clicked (for smoother navigation)
-        const mobileLinks = menu.querySelectorAll('a[href^="#"]');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('mobile-menu-hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                button.setAttribute('aria-expanded', 'false');
-            });
-        });
-    </script>
+      <div class="glass p-6 rounded-2xl shadow-2xl border border-white/6">
+        <h3 class="font-semibold mb-2">Preview: Minimalist (Premium)</h3>
+        <div class="bg-white rounded-lg text-slate-900 p-4" style="min-height:220px">
+          <h4 class="font-bold text-lg">Jane Doe</h4>
+          <p class="text-sm text-slate-600">Product Designer — 5 years</p>
+          <div class="mt-3 text-sm text-slate-700">Experience highlights, achievement bullets and clean layout — export-ready preview.</div>
+        </div>
+
+        <div class="mt-4 flex gap-3">
+          <a href="templates.html" class="px-3 py-2 bg-indigo-600 text-white rounded hover:scale-105 transition">Choose Template</a>
+          <a href="#features" class="px-3 py-2 border rounded text-indigo-200 hover:bg-indigo-900/10 transition">Features</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- features -->
+  <section id="features" class="max-w-6xl mx-auto px-6 py-10">
+    <h3 class="text-2xl font-semibold text-white/90 mb-6">Features</h3>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="glass p-4 rounded-lg">
+        <div class="font-semibold">AI Suggestions</div>
+        <div class="text-xs text-indigo-200/60 mt-2">Tailor bullets, rewrite summaries, and match job descriptions (coming soon).</div>
+      </div>
+      <div class="glass p-4 rounded-lg">
+        <div class="font-semibold">ATS Check</div>
+        <div class="text-xs text-indigo-200/60 mt-2">See keywords & compatibility score for each job posting.</div>
+      </div>
+      <div class="glass p-4 rounded-lg">
+        <div class="font-semibold">Templates</div>
+        <div class="text-xs text-indigo-200/60 mt-2">Free + premium templates designed to pass ATS.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="max-w-6xl mx-auto p-6 text-center text-indigo-200/40">
+    © 2025 Runvai — Crafted for builders & job seekers
+  </footer>
+
 </body>
 </html>
