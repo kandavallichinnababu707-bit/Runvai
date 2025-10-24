@@ -1,161 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Runvai — Resume Builder</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runvai — Multi-Template Resume Builder</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    /* Custom styles for the dark theme and glass effect */
-    .glass {
-        background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-        backdrop-filter: blur(6px) saturate(120%);
-    }
-    
-    /* Ensure the main container is full screen and allows for the fixed preview */
-    .main-grid {
-        display: grid;
-        grid-template-columns: 1fr; /* Default: stack on small screens */
-    }
-
-    @media (min-width: 1024px) {
-        .main-grid {
-            grid-template-columns: 3fr 2fr; /* Lg: 60% Input, 40% Preview */
-            min-height: 100vh;
-        }
-    }
-
-    /* Make the preview pane fixed and scrollable */
-    .preview-pane {
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        overflow-y: auto;
-    }
-
-    /* Style for the resume paper area */
-    .resume-paper {
-        width: 100%;
-        max-width: 450px; /* Constrain size for visual appeal */
-        aspect-ratio: 8.5 / 11; /* Standard letter/A4 paper ratio */
-        background-color: white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        border-radius: 4px;
-        margin: 50px auto; /* Centered in the scrollable preview pane */
-    }
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
-<body class="bg-gradient-to-br from-[#0f172a] via-[#081427] to-[#020617] text-white antialiased">
+<body class="bg-gray-50 font-sans">
 
-<header class="sticky top-0 z-50 p-4 bg-[#0f172a] shadow-lg border-b border-indigo-900/40 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-        <a href="index.html" class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-sm font-bold">RV</a>
-        <h1 class="text-xl font-bold tracking-tight">Builder</h1>
-        <span id="current-template-display" class="text-sm text-indigo-300/60">Template: Modern</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-        <button onclick="location.href='templates.html'" class="px-3 py-1.5 glass rounded-lg text-sm hover:bg-white/10 transition">
-            Change Template
-        </button>
-        <button class="px-3 py-1.5 glass rounded-lg text-sm hover:bg-white/10 transition">
-            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            Preview Mobile
-        </button>
-        <button class="px-4 py-1.5 bg-amber-500 text-slate-900 font-bold rounded-lg text-sm hover:bg-amber-400 transition shadow-lg">
-            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download PDF
-        </button>
-    </div>
+<!-- Header -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold text-indigo-600">Runvai</h1>
+  </div>
 </header>
 
-<div class="main-grid">
+<div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-6">
 
-    <div class="p-6 lg:p-10 space-y-8 overflow-y-auto">
-        
-        <section class="mb-8">
-            <h2 class="text-3xl font-bold mb-2">Your Content Editor</h2>
-            <p class="text-indigo-200/60">
-                Start filling out your sections. Your resume updates in real-time on the right.
-            </p>
+  <!-- Sidebar Form -->
+  <div class="md:w-1/3 bg-white shadow-lg rounded-lg p-6 space-y-6">
+    <h2 class="text-xl font-bold mb-4">Resume Builder</h2>
 
-            <div class="mt-5 p-4 glass rounded-xl border border-indigo-700/30">
-                <p class="font-semibold text-indigo-300">AI Resume Tailor (BETA)</p>
-                <p class="text-sm text-indigo-200/70 mt-1 mb-3">
-                    Paste a Job Description (JD) below to get personalized suggestions for your bullet points.
-                </p>
-                <textarea class="w-full p-2 text-sm rounded bg-black/30 border border-indigo-500/50 focus:border-indigo-400 transition text-white" rows="3" placeholder="Paste Job Description here..."></textarea>
-                <button class="mt-2 px-3 py-1 bg-indigo-600 rounded text-sm font-semibold hover:bg-indigo-500 transition">Analyze JD</button>
-            </div>
-        </section>
-
-        <section>
-            <h3 class="text-2xl font-semibold mb-4 border-b border-indigo-800/50 pb-2">1. Contact & Summary</h3>
-            <div class="glass p-5 rounded-lg border border-white/10 space-y-4">
-                <input type="text" placeholder="Full Name" class="w-full p-2 rounded bg-black/30 border border-indigo-500/50 text-white"/>
-                <input type="email" placeholder="Email Address" class="w-full p-2 rounded bg-black/30 border border-indigo-500/50 text-white"/>
-            </div>
-        </section>
-
-        <section>
-            <h3 class="text-2xl font-semibold mb-4 border-b border-indigo-800/50 pb-2">2. Work Experience</h3>
-            <div class="glass p-5 rounded-lg border border-white/10">
-                <p class="text-indigo-300">Job Title, Company, Dates, and Achivement Bullets inputs...</p>
-            </div>
-        </section>
-
-        <section>
-            <h3 class="text-2xl font-semibold mb-4 border-b border-indigo-800/50 pb-2">3. Education & Skills</h3>
-            <div class="glass p-5 rounded-lg border border-white/10">
-                <p class="text-indigo-300">Degree, Institution, and Skill lists inputs...</p>
-            </div>
-        </section>
-        
-        <div class="h-20"></div> </div>
-
-    <div class="hidden lg:block bg-gray-900/40 preview-pane p-8">
-        
-        <div class="resume-paper">
-            <img id="template-preview-image" src="" alt="Live Resume Preview" class="w-full h-full object-cover rounded-sm"/>
-        </div>
-        
+    <!-- Template Selector -->
+    <div>
+      <label class="font-medium mb-2 block">Choose Template</label>
+      <select id="templateSelect" class="w-full border rounded px-3 py-2">
+        <option value="normalFree">Normal Free</option>
+        <option value="atsFree">ATS Optimized Free</option>
+        <option value="modernPremium">Modern Pro (Premium)</option>
+        <option value="functionalPremium">Functional (Premium)</option>
+      </select>
     </div>
+
+    <!-- Personal Info -->
+    <div>
+      <label class="font-medium mb-2 block">Full Name</label>
+      <input type="text" id="fullName" class="w-full border rounded px-3 py-2" placeholder="Jane Doe">
+    </div>
+
+    <div>
+      <label class="font-medium mb-2 block">Email</label>
+      <input type="text" id="email" class="w-full border rounded px-3 py-2" placeholder="jane@example.com">
+    </div>
+
+    <div>
+      <label class="font-medium mb-2 block">Phone</label>
+      <input type="text" id="phone" class="w-full border rounded px-3 py-2" placeholder="+91 9876543210">
+    </div>
+
+    <!-- Experience -->
+    <div id="experienceContainer">
+      <label class="font-medium mb-2 block">Experience</label>
+      <div class="mb-2 flex gap-2">
+        <textarea class="w-full border rounded px-3 py-2 experienceField" rows="2" placeholder="Job title, Company, Year"></textarea>
+        <button type="button" id="addExperience" class="bg-indigo-600 text-white px-2 rounded">+</button>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div id="educationContainer">
+      <label class="font-medium mb-2 block">Education</label>
+      <div class="mb-2 flex gap-2">
+        <textarea class="w-full border rounded px-3 py-2 educationField" rows="2" placeholder="Degree, College, Year"></textarea>
+        <button type="button" id="addEducation" class="bg-indigo-600 text-white px-2 rounded">+</button>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div>
+      <label class="font-medium mb-2 block">Skills (comma separated)</label>
+      <input type="text" id="skills" class="w-full border rounded px-3 py-2" placeholder="HTML, CSS, JS">
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-col gap-3">
+      <button id="downloadBtn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 font-medium">Download PDF</button>
+    </div>
+  </div>
+
+  <!-- Live Preview -->
+  <div class="md:w-2/3 bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4">Live Preview</h2>
+    <div id="resumePreview" class="border p-6 space-y-4">
+
+      <h1 id="previewName" class="text-2xl font-bold text-gray-800">Jane Doe</h1>
+      <p id="previewEmail" class="text-gray-600">jane@example.com</p>
+      <p id="previewPhone" class="text-gray-600">+91 9876543210</p>
+      <hr>
+
+      <div id="previewExperienceSection">
+        <h3 class="font-bold text-gray-700">Experience</h3>
+        <p class="previewExperience">Job title, Company, Year</p>
+      </div>
+
+      <div id="previewEducationSection">
+        <h3 class="font-bold text-gray-700">Education</h3>
+        <p class="previewEducation">Degree, College, Year</p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-gray-700">Skills</h3>
+        <p id="previewSkills">HTML, CSS, JS</p>
+      </div>
+
+    </div>
+  </div>
 
 </div>
 
 <script>
-    // ----------------------------------------------------
-    // Template Preview Logic
-    // ----------------------------------------------------
-    const previewImage = document.getElementById('template-preview-image');
-    const currentTemplateDisplay = document.getElementById('current-template-display');
-    
-    // Map of template names (from templates.html) to image URLs
-    // NOTE: Replace these placeholder image URLs with YOUR actual hosted template image URLs!
-    const templateImageMap = {
-        'modern': 'https://i.imgur.com/9LQYV5x.png',      // Modern (free)
-        'professional': 'https://i.imgur.com/TS6g1Yt.png', // Professional (free)
-        'minimalist': 'https://i.imgur.com/6vXx4Dh.png',   // Minimalist (premium)
-        'creative': 'https://i.imgur.com/1XGu27s.png'     // Creative (premium)
-    };
+  // Elements
+  const fullName = document.getElementById('fullName');
+  const email = document.getElementById('email');
+  const phone = document.getElementById('phone');
+  const skills = document.getElementById('skills');
+  const templateSelect = document.getElementById('templateSelect');
 
-    function loadSelectedTemplate() {
-        // 1. Get the template name from localStorage (set on templates.html)
-        let selectedTpl = localStorage.getItem('runvai_selected_template') || 'modern'; // Default to 'modern'
-        
-        // 2. Load the corresponding image URL
-        const imageUrl = templateImageMap[selectedTpl.toLowerCase()] || templateImageMap['modern'];
-        
-        // 3. Update the image source and alt text
-        previewImage.src = imageUrl;
-        previewImage.alt = `${selectedTpl} Resume Preview`;
-        
-        // 4. Update the header display text
-        currentTemplateDisplay.textContent = `Template: ${selectedTpl.charAt(0).toUpperCase() + selectedTpl.slice(1)}`;
+  const previewName = document.getElementById('previewName');
+  const previewEmail = document.getElementById('previewEmail');
+  const previewPhone = document.getElementById('previewPhone');
+  const previewSkills = document.getElementById('previewSkills');
+  const resumePreview = document.getElementById('resumePreview');
+
+  const experienceContainer = document.getElementById('experienceContainer');
+  const educationContainer = document.getElementById('educationContainer');
+  const previewExperienceSection = document.getElementById('previewExperienceSection');
+  const previewEducationSection = document.getElementById('previewEducationSection');
+
+  // Update preview
+  fullName.addEventListener('input', () => previewName.textContent = fullName.value || "Jane Doe");
+  email.addEventListener('input', () => previewEmail.textContent = email.value || "jane@example.com");
+  phone.addEventListener('input', () => previewPhone.textContent = phone.value || "+91 9876543210");
+  skills.addEventListener('input', () => previewSkills.textContent = skills.value || "HTML, CSS, JS");
+
+  // Dynamic experience
+  function updateExperiencePreview() {
+    const allExp = document.querySelectorAll('.experienceField');
+    previewExperienceSection.innerHTML = '<h3 class="font-bold text-gray-700">Experience</h3>';
+    allExp.forEach(exp => {
+      const p = document.createElement('p');
+      p.textContent = exp.value || "Job title, Company, Year";
+      p.className = "previewExperience";
+      previewExperienceSection.appendChild(p);
+    });
+  }
+
+  // Dynamic education
+  function updateEducationPreview() {
+    const allEdu = document.querySelectorAll('.educationField');
+    previewEducationSection.innerHTML = '<h3 class="font-bold text-gray-700">Education</h3>';
+    allEdu.forEach(edu => {
+      const p = document.createElement('p');
+      p.textContent = edu.value || "Degree, College, Year";
+      p.className = "previewEducation";
+      previewEducationSection.appendChild(p);
+    });
+  }
+
+  // Add new experience field
+  document.getElementById('addExperience').addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = "mb-2 flex gap-2";
+    div.innerHTML = `<textarea class="w-full border rounded px-3 py-2 experienceField" rows="2" placeholder="Job title, Company, Year"></textarea>
+    <button type="button" class="bg-red-600 text-white px-2 rounded removeExp">-</button>`;
+    experienceContainer.appendChild(div);
+
+    div.querySelector('.experienceField').addEventListener('input', updateExperiencePreview);
+    div.querySelector('.removeExp').addEventListener('click', () => {
+      div.remove();
+      updateExperiencePreview();
+    });
+  });
+
+  // Add new education field
+  document.getElementById('addEducation').addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = "mb-2 flex gap-2";
+    div.innerHTML = `<textarea class="w-full border rounded px-3 py-2 educationField" rows="2" placeholder="Degree, College, Year"></textarea>
+    <button type="button" class="bg-red-600 text-white px-2 rounded removeEdu">-</button>`;
+    educationContainer.appendChild(div);
+
+    div.querySelector('.educationField').addEventListener('input', updateEducationPreview);
+    div.querySelector('.removeEdu').addEventListener('click', () => {
+      div.remove();
+      updateEducationPreview();
+    });
+  });
+
+  // Initial input listeners for experience and education
+  document.querySelectorAll('.experienceField').forEach(exp => exp.addEventListener('input', updateExperiencePreview));
+  document.querySelectorAll('.educationField').forEach(edu => edu.addEventListener('input', updateEducationPreview));
+
+  // Template switch
+  templateSelect.addEventListener('change', () => {
+    const val = templateSelect.value;
+    resumePreview.className = "border p-6 space-y-4";
+
+    if(val === 'normalFree'){
+      resumePreview.classList.add('text-gray-800', 'font-sans');
+    } else if(val === 'atsFree'){
+      resumePreview.classList.add('text-gray-900', 'font-serif');
+    } else if(val === 'modernPremium'){
+      resumePreview.classList.add('text-indigo-700', 'font-sans');
+    } else if(val === 'functionalPremium'){
+      resumePreview.classList.add('text-gray-900', 'font-mono');
     }
+  });
 
-    // Run the function when the builder page loads
-    window.onload = loadSelectedTemplate;
+  // Download PDF / DOCX
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const val = templateSelect.value;
+    if(val.includes('Premium')){
+      alert("Premium template selected! PDF + DOCX download coming soon in Pro version.");
+    }
+    html2pdf().from(resumePreview).set({margin:0.5, filename:'Runvai_Resume.pdf'}).save();
+  });
 </script>
 
 </body>
