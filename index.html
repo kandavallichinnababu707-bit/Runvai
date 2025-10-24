@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Runvai — Build Job-Winning Resumes</title>
+  <title>Runvai — Professional Resume Builder</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- SwiperJS for carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -22,38 +25,64 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-indigo-600 text-white py-20">
+  <section class="bg-indigo-600 text-white py-24">
     <div class="container mx-auto text-center px-4">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Create Your Job-Winning Resume in Minutes</h2>
-      <p class="text-lg md:text-xl mb-8">Professional, ATS-friendly templates to get you noticed by recruiters.</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Land Your Dream Job with Runvai</h2>
+      <p class="text-lg md:text-xl mb-8">Professional, ATS-friendly resume templates that get you noticed.</p>
       <a href="#start" class="bg-white text-indigo-600 font-bold px-6 py-3 rounded hover:bg-gray-100 transition">Start Free</a>
     </div>
   </section>
 
-  <!-- Templates Showcase -->
+  <!-- Templates Carousel -->
   <section id="templates" class="py-16">
     <div class="container mx-auto px-4">
       <h3 class="text-3xl font-bold text-center mb-12">Choose Your Template</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <!-- Free Template -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src="https://via.placeholder.com/400x500?text=Minimalist+Free" alt="Minimalist Free Template" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h4 class="font-bold text-xl mb-2">Minimalist</h4>
-            <p class="text-gray-600 mb-4">Clean two-column layout. Perfect for freshers.</p>
-            <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
+
+      <!-- Swiper -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- Free Template -->
+          <div class="swiper-slide flex justify-center">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition w-80">
+              <img src="https://via.placeholder.com/400x500?text=Minimalist+Free" alt="Minimalist Free Template" class="w-full h-64 object-cover">
+              <div class="p-6 text-center">
+                <h4 class="font-bold text-xl mb-2">Minimalist</h4>
+                <p class="text-gray-600 mb-4">Clean layout for freshers</p>
+                <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Free</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- Premium Template -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src="https://via.placeholder.com/400x500?text=Modern+Premium" alt="Modern Premium Template" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h4 class="font-bold text-xl mb-2">Modern Pro</h4>
-            <p class="text-gray-600 mb-4">Bold colors, clean sections. Ideal for experienced professionals.</p>
-            <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+
+          <!-- Premium Template 1 -->
+          <div class="swiper-slide flex justify-center">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition w-80">
+              <img src="https://via.placeholder.com/400x500?text=Modern+Premium" alt="Modern Premium Template" class="w-full h-64 object-cover">
+              <div class="p-6 text-center">
+                <h4 class="font-bold text-xl mb-2">Modern Pro</h4>
+                <p class="text-gray-600 mb-4">Bold design for professionals</p>
+                <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Premium Template 2 -->
+          <div class="swiper-slide flex justify-center">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition w-80">
+              <img src="https://via.placeholder.com/400x500?text=Functional+Premium" alt="Functional Premium Template" class="w-full h-64 object-cover">
+              <div class="p-6 text-center">
+                <h4 class="font-bold text-xl mb-2">Functional</h4>
+                <p class="text-gray-600 mb-4">Skills-focused, ideal for career changers</p>
+                <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <!-- Add more templates here -->
+        <!-- Navigation Buttons -->
+        <div class="swiper-button-next text-indigo-600"></div>
+        <div class="swiper-button-prev text-indigo-600"></div>
+        <!-- Pagination -->
+        <div class="swiper-pagination mt-6"></div>
       </div>
     </div>
   </section>
@@ -61,17 +90,17 @@
   <!-- Features Section -->
   <section id="features" class="bg-gray-100 py-16">
     <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold text-center mb-12">Why Choose Runvai?</h3>
+      <h3 class="text-3xl font-bold text-center mb-12">Why Runvai?</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
           <h4 class="text-xl font-bold mb-2">ATS-Friendly</h4>
-          <p class="text-gray-600">Your resume will pass automated hiring systems with ease.</p>
+          <p class="text-gray-600">Pass automated hiring systems with ease.</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
           <h4 class="text-xl font-bold mb-2">Real-Time Editor</h4>
-          <p class="text-gray-600">See all changes instantly while building your resume.</p>
+          <p class="text-gray-600">See changes instantly while building your resume.</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition">
           <h4 class="text-xl font-bold mb-2">Download Options</h4>
           <p class="text-gray-600">Export in PDF (Free) or DOCX (Premium) formats.</p>
         </div>
@@ -85,16 +114,16 @@
       <h3 class="text-3xl font-bold text-center mb-12">Pricing</h3>
       <div class="flex flex-col md:flex-row justify-center gap-8">
         <!-- Free Plan -->
-        <div class="bg-white shadow-md rounded-lg p-8 text-center flex-1">
+        <div class="bg-white shadow-lg rounded-lg p-8 text-center flex-1 transform hover:scale-105 transition">
           <h4 class="text-2xl font-bold mb-4">Free</h4>
-          <p class="text-gray-600 mb-6">Access 1 template and export as PDF.</p>
+          <p class="text-gray-600 mb-6">1 template + PDF export</p>
           <p class="text-3xl font-bold mb-6">₹0</p>
           <a href="#start" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 font-medium">Start Free</a>
         </div>
         <!-- Premium Plan -->
-        <div class="bg-white shadow-md rounded-lg p-8 text-center flex-1">
+        <div class="bg-white shadow-lg rounded-lg p-8 text-center flex-1 transform hover:scale-105 transition">
           <h4 class="text-2xl font-bold mb-4">Premium</h4>
-          <p class="text-gray-600 mb-6">All templates + export as DOCX and PDF.</p>
+          <p class="text-gray-600 mb-6">All templates + PDF & DOCX export</p>
           <p class="text-3xl font-bold mb-6">₹999</p>
           <a href="#start" class="bg-yellow-500 text-white px-6 py-3 rounded hover:bg-yellow-600 font-medium">Upgrade</a>
         </div>
@@ -102,7 +131,7 @@
     </div>
   </section>
 
-  <!-- Call to Action -->
+  <!-- CTA -->
   <section id="start" class="bg-indigo-600 text-white py-16 text-center">
     <h3 class="text-3xl font-bold mb-4">Ready to Build Your Resume?</h3>
     <p class="mb-6">Get started with Runvai and land your dream job.</p>
@@ -118,6 +147,22 @@
       <a href="#" class="hover:text-white">Contact</a>
     </div>
   </footer>
+
+  <!-- SwiperJS Init -->
+  <script>
+    const swiper = new Swiper('.mySwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  </script>
 
 </body>
 </html>
