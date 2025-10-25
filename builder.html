@@ -1,243 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Runvai — Builder</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<style>
-  .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); backdrop-filter: blur(6px) saturate(120%); }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Runvai — Builder (Templates 2.0) — Free Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    /* small bespoke styles */
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); }
+    .neat { -webkit-font-smoothing: antialiased; }
+    /* preview paper look */
+    .paper { background: white; border-radius: 8px; padding: 24px; box-shadow: 0 6px 20px rgba(2,6,23,0.06); }
+    /* make editable focus visible */
+    [contenteditable]:focus { outline: 2px solid rgba(59,130,246,0.25); outline-offset: 2px; }
+    /* small printable widths */
+    @media print { body * { visibility: hidden; } #preview, #preview * { visibility: visible; } #preview { position: absolute; left:0; top:0; } }
+  </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-[#071029] to-[#020214] text-white">
-
-<header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
-  <div class="flex items-center gap-3">
-    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow">RV</div>
-    <div>
-      <div class="font-bold">Runvai</div>
-      <div class="text-xs text-indigo-200/60">Resume Builder</div>
-    </div>
-  </div>
-
-  <div class="flex items-center gap-3">
-    <button id="saveBtn" class="px-4 py-2 bg-emerald-500 text-black rounded font-semibold hidden">Save</button>
-    <button id="loginBtn" class="px-4 py-2 bg-blue-600 rounded">Login</button>
-    <a href="templates.html" class="px-3 py-2 text-indigo-200/60">Change Template</a>
-  </div>
-</header>
-
-<main class="max-w-7xl mx-auto p-6 grid md:grid-cols-3 gap-6">
-  <!-- Panel: Controls (left) -->
-  <section class="md:col-span-1 space-y-4">
-    <div class="glass p-4 rounded-lg">
-      <div class="font-semibold mb-2">Template</div>
-      <div id="selected-template" class="text-sm text-indigo-200/70">Loading…</div>
-    </div>
-
-    <div class="glass p-4 rounded-lg">
-      <div class="font-semibold mb-2">Export</div>
-      <div class="flex gap-2">
-        <button id="downloadBtn" class="px-3 py-2 bg-indigo-600 rounded">Download PDF</button>
-      </div>
-    </div>
-
-    <div class="glass p-4 rounded-lg">
-      <div class="font-semibold mb-2">Quick Tips</div>
-      <ul class="text-xs text-indigo-200/60 space-y-1">
-        <li>Use short action bullets.</li>
-        <li>Keep summary 2–3 lines.</li>
-        <li>Tailor skills to job description.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Panel: Editor (middle) -->
-  <section class="md:col-span-1 bg-white rounded-2xl p-6 text-slate-900">
-    <h3 class="font-bold mb-4">Edit Resume</h3>
-
-    <label class="block text-sm font-medium mb-1">Full name</label>
-    <input id="name" class="w-full p-3 border rounded-lg mb-3" placeholder="Jane Doe">
-
-    <label class="block text-sm font-medium mb-1">Summary</label>
-    <textarea id="summary" class="w-full p-3 border rounded-lg mb-3" rows="3" placeholder="Summary"></textarea>
-
-    <label class="block text-sm font-medium mb-1">Experience</label>
-    <div id="experience-container" class="space-y-2 mb-2">
-      <input class="w-full p-3 border rounded-lg experience-input" placeholder="Company - Role - Achievements">
-    </div>
-    <button id="add-experience" class="px-3 py-1 bg-indigo-600 text-white rounded mb-4">+ Add Experience</button>
-
-    <label class="block text-sm font-medium mb-1">Skills</label>
-    <div id="skills-container" class="space-y-2 mb-2">
-      <input class="w-full p-3 border rounded-lg skill-input" placeholder="Skill">
-    </div>
-    <button id="add-skill" class="px-3 py-1 bg-indigo-600 text-white rounded mb-4">+ Add Skill</button>
-
-    <div class="flex gap-2">
-      <button id="saveLocal" class="px-4 py-2 bg-emerald-500 text-black rounded">Save Locally</button>
-      <button id="clearLocal" class="px-4 py-2 bg-red-500 text-white rounded">Clear</button>
-    </div>
-  </section>
-
-  <!-- Panel: Live Preview (right) -->
-  <section class="md:col-span-1">
-    <div id="resume-preview" class="bg-white text-slate-900 p-5 rounded-2xl shadow-lg">
-      <!-- This area will be restyled per template selection (fonts, layout) -->
-      <div id="preview-root">
-        <h1 id="preview-name" class="text-xl font-bold">Full Name</h1>
-        <p id="preview-summary" class="text-sm text-slate-700 italic mt-1">Professional summary...</p>
-
-        <div class="mt-4">
-          <h4 class="font-semibold">Experience</h4>
-          <ul id="preview-experience" class="list-disc pl-5 text-sm text-slate-700"><li>Company - Role - Achievements...</li></ul>
+<body class="bg-slate-50 neat min-h-screen text-slate-800">
+  <div class="max-w-[1200px] mx-auto p-6">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-lg bg-white flex items-center justify-center shadow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 18h16M4 12h8" stroke="#1E3A8A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-
-        <div class="mt-4">
-          <h4 class="font-semibold">Skills</h4>
-          <ul id="preview-skills" class="list-disc pl-5 text-sm text-slate-700"><li>Technical skills...</li></ul>
+        <div>
+          <h1 class="text-xl font-semibold">Runvai — Builder</h1>
+          <p class="text-sm text-slate-500">Clean Minimalist — Blue theme — Free ATS-friendly template</p>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+      <div class="flex gap-2 items-center">
+        <button id="saveBtn" class="px-3 py-2 bg-blue-600 text-white rounded-md text-sm shadow">Save Draft</button>
+        <button id="exportBtn" class="px-3 py-2 bg-white border border-slate-200 rounded-md text-sm">Download HTML</button>
+        <button id="resetBtn" class="px-3 py-2 text-sm text-slate-500">Reset</button>
+      </div>
+    </header>
 
-<script>
-/* -------------- load selected template (from templates.html) -------------- */
-const selectedTemplateEl = document.getElementById('selected-template');
-const previewRoot = document.getElementById('preview-root');
-const resumePreview = document.getElementById('resume-preview');
+    <main class="grid grid-cols-12 gap-6">
+      <!-- Left: controls -->
+      <aside class="col-span-3">
+        <div class="glass p-4 rounded-xl">
+          <h3 class="font-medium mb-3">Templates</h3>
+          <div class="flex flex-col gap-2">
+            <button class="tpl-btn text-left p-3 rounded-md hover:bg-slate-100" data-tpl="free-1">Free — Clean Minimal (ATS)</button>
+            <!-- reserve slot for more templates later -->
+            <button class="tpl-btn text-left p-3 rounded-md opacity-60 cursor-not-allowed" disabled>Pro — coming</button>
+            <button class="tpl-btn text-left p-3 rounded-md opacity-60 cursor-not-allowed" disabled>Premium — coming</button>
+          </div>
 
-const tpl = localStorage.getItem('runvai_selected_template') || 'modern';
-selectedTemplateEl.innerText = tpl.charAt(0).toUpperCase() + tpl.slice(1);
+          <hr class="my-4" />
 
-/* apply simple template styles */
-function applyTemplateStyling(template){
-  resumePreview.className = ''; // reset
-  resumePreview.classList.add('bg-white', 'text-slate-900', 'p-5', 'rounded-2xl', 'shadow-lg');
+          <h3 class="font-medium mb-2">Personal Info</h3>
+          <div id="formFields" class="space-y-3">
+            <input id="nameInput" placeholder="Full name" class="w-full p-2 rounded border" />
+            <input id="titleInput" placeholder="Professional title" class="w-full p-2 rounded border" />
+            <input id="contactInput" placeholder="email • phone • city" class="w-full p-2 rounded border" />
+          </div>
 
-  if(template === 'modern'){
-    previewRoot.style.fontFamily = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto';
-    // modern: clean
-  } else if(template === 'professional'){
-    previewRoot.style.fontFamily = 'Georgia, "Times New Roman", serif';
-    // professional: serif headings
-  } else if(template === 'minimalist'){
-    previewRoot.style.fontFamily = 'Inter, system-ui';
-    resumePreview.style.borderLeft = '6px solid #0ea5a4'; // teal accent (premium)
-  } else if(template === 'creative'){
-    previewRoot.style.fontFamily = 'Poppins, system-ui';
-    resumePreview.style.borderLeft = '6px solid #7c3aed'; // purple accent (premium)
-  }
-}
-applyTemplateStyling(tpl);
+          <hr class="my-4" />
 
-/* -------------- live editor → preview -------------- */
-const nameInput = document.getElementById('name');
-const summaryInput = document.getElementById('summary');
-const previewName = document.getElementById('preview-name');
-const previewSummary = document.getElementById('preview-summary');
-const previewExperience = document.getElementById('preview-experience');
-const previewSkills = document.getElementById('preview-skills');
+          <h3 class="font-medium mb-2">Quick actions</h3>
+          <div class="flex gap-2">
+            <button id="addExp" class="flex-1 p-2 rounded border text-sm">+ Add Experience</button>
+            <button id="addEdu" class="flex-1 p-2 rounded border text-sm">+ Add Education</button>
+          </div>
 
-nameInput.addEventListener('input', () => previewName.innerText = nameInput.value || 'Full Name');
-summaryInput.addEventListener('input', () => previewSummary.innerText = summaryInput.value || 'Professional summary...');
+          <p class="text-xs text-slate-500 mt-3">Edits happen inline on the preview. Click any text, type, and it autosaves.</p>
+        </div>
+      </aside>
 
-/* experience */
-const expContainer = document.getElementById('experience-container');
-document.getElementById('add-experience').addEventListener('click', () => {
-  const input = document.createElement('input');
-  input.placeholder = 'Company - Role - Achievements';
-  input.className = 'w-full p-3 border rounded-lg experience-input';
-  expContainer.appendChild(input);
-  input.addEventListener('input', updateExperiencePreview);
-});
-function updateExperiencePreview(){
-  const items = Array.from(document.querySelectorAll('.experience-input')).map(i=>i.value).filter(Boolean);
-  previewExperience.innerHTML = items.map(i=>`<li>${i}</li>`).join('') || '<li>Company - Role - Achievements...</li>';
-}
-updateExperiencePreview();
+      <!-- Center: preview (editable) -->
+      <section class="col-span-6">
+        <div class="paper" id="previewContainer">
+          <div id="preview">Loading template…</div>
+        </div>
+      </section>
 
-/* skills */
-const skillsContainer = document.getElementById('skills-container');
-document.getElementById('add-skill').addEventListener('click', () => {
-  const input = document.createElement('input');
-  input.placeholder = 'Skill';
-  input.className = 'w-full p-3 border rounded-lg skill-input';
-  skillsContainer.appendChild(input);
-  input.addEventListener('input', updateSkillsPreview);
-});
-function updateSkillsPreview(){
-  const items = Array.from(document.querySelectorAll('.skill-input')).map(i=>i.value).filter(Boolean);
-  previewSkills.innerHTML = items.map(i=>`<li>${i}</li>`).join('') || '<li>Technical skills...</li>';
-}
-updateSkillsPreview();
+      <!-- Right: live JSON / slots -->
+      <aside class="col-span-3">
+        <div class="p-4 rounded-xl bg-white shadow">
+          <h3 class="font-medium mb-2">Sections</h3>
+          <div id="sectionsList" class="space-y-2 text-sm text-slate-700">
+            <!-- JS will populate -->
+          </div>
+          <hr class="my-4" />
+          <h3 class="font-medium mb-2">Preview options</h3>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="text-sm">Font size</label>
+            <select id="fontSize" class="ml-auto border p-1 rounded text-sm">
+              <option value="14">14px</option>
+              <option value="15" selected>15px</option>
+              <option value="16">16px</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="text-sm">Accent color</label>
+            <input id="accentColor" type="color" value="#2563EB" class="ml-auto w-10 h-8 p-0" />
+          </div>
+        </div>
+      </aside>
+    </main>
 
-/* -------------- save locally / clear -------------- */
-document.getElementById('saveLocal').addEventListener('click', () => {
-  const data = {
-    template: tpl,
-    name: nameInput.value,
-    summary: summaryInput.value,
-    experiences: Array.from(document.querySelectorAll('.experience-input')).map(i=>i.value),
-    skills: Array.from(document.querySelectorAll('.skill-input')).map(i=>i.value),
-    savedAt: new Date().toISOString()
-  };
-  localStorage.setItem('runvai_saved_resume', JSON.stringify(data));
-  alert('Resume saved locally in your browser (you can later implement cloud save).');
-});
+    <footer class="mt-6 text-xs text-slate-500">Runvai • Templates 2.0 — Free template — Built for clean ATS compatibility</footer>
+  </div>
 
-document.getElementById('clearLocal').addEventListener('click', () => {
-  localStorage.removeItem('runvai_saved_resume');
-  nameInput.value=''; summaryInput.value=''; updateExperiencePreview(); updateSkillsPreview();
-  previewName.innerText='Full Name'; previewSummary.innerText='Professional summary...';
-});
+  <!-- Inline templates as strings for ease of use. Later you can move these to /templates/*.html files -->
+  <script>
+    const TEMPLATES = {
+      'free-1': `
+      <div style="max-width:780px;margin:0 auto;color:#0f172a;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;"> 
+        <div style="display:flex;gap:18px;align-items:center;margin-bottom:6px"> 
+          <div style="flex:1"> 
+            <h1 data-field="name" contenteditable="true" style="margin:0;font-size:20px;color:#0b2f66;font-weight:700">Your Name</h1>
+            <div data-field="title" contenteditable="true" style="margin-top:6px;color:#334155;font-size:13px">Professional Title • Location</div>
+          </div>
+          <div style="text-align:right"> 
+            <div data-field="contact" contenteditable="true" style="font-size:13px;color:#334155">you@example.com • +91 98765 43210</div>
+          </div>
+        </div>
 
-/* -------------- download PDF -------------- */
-document.getElementById('downloadBtn').addEventListener('click', () => {
-  html2pdf().from(document.getElementById('preview-root')).save('runvai-resume.pdf');
-});
+        <hr style="border:none;border-top:1px solid #e6eefc;margin:14px 0"/>
 
-/* -------------- Firebase placeholders (to implement later) -------------- */
-// loginBtn / saveBtn are ready; once integrated: show saveBtn when logged in
-const loginBtn = document.getElementById('loginBtn');
-const saveBtn = document.getElementById('saveBtn');
-loginBtn.addEventListener('click', ()=> alert('Firebase login integration coming next!'));
-// after login, show saveBtn and call cloud save functions
+        <section>
+          <h3 style="margin:0 0 8px 0;font-size:14px;color:#0b2f66;font-weight:600">Summary</h3>
+          <p data-field="summary" contenteditable="true" style="margin:0 0 12px 0;font-size:13px;color:#334155;line-height:1.35">Results-driven software engineer with experience building web apps. Strong in Python, JavaScript, and product-focused design.</p>
+        </section>
 
-// on load: if local saved resume exists, load it
-window.addEventListener('load', () => {
-  const saved = localStorage.getItem('runvai_saved_resume');
-  if(saved){
-    const data = JSON.parse(saved);
-    if(data.name) nameInput.value = data.name;
-    if(data.summary) summaryInput.value = data.summary;
-    // clear current exp/skills and populate
-    document.querySelectorAll('.experience-input').forEach(n=>n.remove());
-    document.querySelectorAll('.skill-input').forEach(n=>n.remove());
-    data.experiences?.forEach(v => {
-      const input = document.createElement('input');
-      input.className='w-full p-3 border rounded-lg experience-input';
-      input.placeholder='Company - Role - Achievements';
-      input.value = v;
-      expContainer.appendChild(input);
-      input.addEventListener('input', updateExperiencePreview);
-    });
-    data.skills?.forEach(v => {
-      const input = document.createElement('input');
-      input.className='w-full p-3 border rounded-lg skill-input';
-      input.placeholder='Skill';
-      input.value = v;
-      skillsContainer.appendChild(input);
-      input.addEventListener('input', updateSkillsPreview);
-    });
-    updateExperiencePreview(); updateSkillsPreview();
-    previewName.innerText = nameInput.value || 'Full Name';
-    previewSummary.innerText = summaryInput.value || 'Professional summary...';
-  }
-});
-</script>
+        <section style="display:flex;gap:22px"> 
+          <div style="flex:1"> 
+            <h3 style="font-size:14px;color:#0b2f66;margin-bottom:8px">Experience</h3>
+            <div class="exp-slot" data-exp-id="1" style="margin-bottom:10px"> 
+              <div style="display:flex;justify-content:space-between"> 
+                <div>
+                  <div contenteditable="true" data-field="exp1-role" style="font-weight:600;font-size:13px">Frontend Developer</div>
+                  <div contenteditable="true" data-field="exp1-company" style="font-size:12px;color:#475569">Runvai — Jan 2024 - Present</div>
+                </div>
+                <div contenteditable="true" data-field="exp1-location" style="font-size:12px;color:#475569">Remote</div>
+              </div>
+              <ul style="margin:8px 0 0 14px;padding:0;font-size:13px;color:#334155;line-height:1.4">
+                <li data-field="exp1-b1" contenteditable="true">Built responsive resume builder used by 2k+ users.</li>
+                <li data-field="exp1-b2" contenteditable="true">Improved template load time by 40%.</li>
+              </ul>
+            </div>
+          </div>
 
+          <div style="width:240px"> 
+            <h3 style="font-size:14px;color:#0b2f66;margin-bottom:8px">Education</h3>
+            <div contenteditable="true" data-field="edu1">B.Tech — Computer Science, College Name — 2020</div>
+            <h3 style="font-size:14px;color:#0b2f66;margin:12px 0 8px 0">Skills</h3>
+            <div contenteditable="true" data-field="skills">Python • JavaScript • React • Tailwind • SQL</div>
+          </div>
+        </section>
+      </div>
+      `
+    };
+
+    // --- App state ---
+    const STATE_KEY = 'runvai_draft_v1';
+    let state = { template: 'free-1', fields: {} };
+
+    // --- DOM refs ---
+    const preview = document.getElementById('preview');
+    const tplButtons = document.querySelectorAll('.tpl-btn');
+    const nameInput = document.getElementById('nameInput');
+    const titleInput = document.getElementById('titleInput');
+    const contactInput = document.getElementById('contactInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const exportBtn = document.getElementById('exportBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const sectionsList = document.getElementById('sectionsList');
+    const fontSize = document.getElementById('fontSize');
+    const accentColor = document.getElementById('accentColor');
+    const addExp = document.getElementById('addExp');
+    const addEdu = document.getElementById('addEdu');
+
+    // --- Utilities ---
+    function saveState(){
+      // collect editable fields
+      const editableEls = preview.querySelectorAll('[data-field]');
+      const fields = {};
+      editableEls.forEach(el => { fields[el.getAttribute('data-field')] = el.innerHTML; });
+      state.fields = fields;
+      localStorage.setItem(STATE_KEY, JSON.stringify(state));
+      showToast('Draft saved');
+    }
+
+    function loadState(){
+      const raw = localStorage.getItem(STATE_KEY);
+      if(!raw) return false;
+      try{ state = JSON.parse(raw); return true; }catch(e){ return false; }
+    }
+
+    function renderTemplate(name){
+      const tpl = TEMPLATES[name];
+      if(!tpl) { preview.innerHTML = '<div class="p-4">Template not found</div>'; return; }
+      preview.innerHTML = tpl;
+      state.template = name;
+      applyFields();
+      attachEditableListeners();
+      rebuildSectionsList();
+      applyPreviewSettings();
+    }
+
+    function applyFields(){
+      const fields = state.fields || {};
+      Object.keys(fields).forEach(k => {
+        const el = preview.querySelector('[data-field="'+k+'"]');
+        if(el) el.innerHTML = fields[k];
+      });
+    }
+
+    function attachEditableListeners(){
+      const editableEls = preview.querySelectorAll('[contenteditable]');
+      editableEls.forEach(el => {
+        el.addEventListener('input', debounce(saveState, 600));
+      });
+    }
+
+    function rebuildSectionsList(){
+      sectionsList.innerHTML = '';
+      const heads = preview.querySelectorAll('h3');
+      heads.forEach((h, i) => {
+        const btn = document.createElement('div');
+        btn.className = 'flex items-center justify-between gap-2';
+        btn.innerHTML = `<div class=\"text-sm\">${h.textContent}</div><div class=\"flex gap-2\"><button class=\"text-xs p-1\">Hide</button><button class=\"text-xs p-1\">Edit</button></div>`;
+        sectionsList.appendChild(btn);
+      });
+    }
+
+    // simple debounce
+    function debounce(fn, t){ let id; return function(...a){ clearTimeout(id); id = setTimeout(()=>fn.apply(this,a), t); } }
+
+    function showToast(msg){
+      // tiny ephemeral toast
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.className = 'fixed right-6 bottom-6 bg-slate-800 text-white px-3 py-2 rounded shadow';
+      document.body.appendChild(el);
+      setTimeout(()=> el.remove(), 1400);
+    }
+
+    // export current preview as standalone HTML file
+    function exportHTML(){
+      const html = `<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>${(state.fields['name']||'Resume')}</title><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap\" rel=\"stylesheet\"><style>body{font-family:Inter, system-ui, -apple-system; padding:28px; color:#0f172a}</style></head><body>${preview.innerHTML}</body></html>`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = (state.fields['name']||'resume') + '.html'; a.click(); URL.revokeObjectURL(url);
+    }
+
+    // restore form inputs from preview fields
+    function syncFormFromPreview(){
+      const name = preview.querySelector('[data-field="name"]')?.innerText || '';
+      const title = preview.querySelector('[data-field="title"]')?.innerText || '';
+      const contact = preview.querySelector('[data-field="contact"]')?.innerText || '';
+      nameInput.value = name; titleInput.value = title; contactInput.value = contact;
+    }
+
+    // sync form back to preview
+    function syncPreviewFromForm(){
+      if(preview.querySelector('[data-field="name"]')) preview.querySelector('[data-field="name"]').innerText = nameInput.value || 'Your Name';
+      if(preview.querySelector('[data-field="title"]')) preview.querySelector('[data-field="title"]').innerText = titleInput.value || 'Professional Title • Location';
+      if(preview.querySelector('[data-field="contact"]')) preview.querySelector('[data-field="contact"]').innerText = contactInput.value || 'you@example.com • +91 98765 43210';
+      saveState();
+    }
+
+    // add a simple experience slot (minimal)
+    function addExperience(){
+      const container = preview.querySelector('.exp-slot')?.parentElement;
+      if(!container) return showToast('No experience container found');
+      const id = Date.now();
+      const node = document.createElement('div');
+      node.className = 'exp-slot';
+      node.innerHTML = `
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+          <div>
+            <div contenteditable="true" data-field="exp-${id}-role" style="font-weight:600;font-size:13px">New Role</div>
+            <div contenteditable="true" data-field="exp-${id}-company" style="font-size:12px;color:#475569">Company — Dates</div>
+          </div>
+          <div contenteditable="true" data-field="exp-${id}-loc" style="font-size:12px;color:#475569">Location</div>
+        </div>
+        <ul style="margin:8px 0 0 14px;padding:0;font-size:13px;color:#334155;line-height:1.4"><li contenteditable="true" data-field="exp-${id}-b1">Achievement / responsibility</li></ul>
+      `;
+      container.appendChild(node);
+      attachEditableListeners(); saveState(); rebuildSectionsList();
+    }
+
+    function addEducation(){
+      const edu = preview.querySelector('[data-field="edu1"]');
+      if(!edu) return showToast('No education block found');
+      const node = document.createElement('div'); node.contentEditable = true; node.setAttribute('data-field', 'edu-'+Date.now()); node.innerText = 'New Education — Details';
+      edu.parentElement.appendChild(node);
+      attachEditableListeners(); saveState(); rebuildSectionsList();
+    }
+
+    // apply preview settings
+    function applyPreviewSettings(){
+      const size = fontSize.value; preview.style.fontSize = size + 'px';
+      const accent = accentColor.value; // apply to headings
+      preview.querySelectorAll('h1,h3').forEach(h => h.style.color = accent);
+    }
+
+    // --- events ---
+    tplButtons.forEach(b => b.addEventListener('click', ()=> renderTemplate(b.getAttribute('data-tpl'))));
+    saveBtn.addEventListener('click', saveState);
+    exportBtn.addEventListener('click', exportHTML);
+    resetBtn.addEventListener('click', ()=>{ if(confirm('Reset local draft?')){ localStorage.removeItem(STATE_KEY); location.reload(); }});
+    nameInput.addEventListener('input', debounce(syncPreviewFromForm, 300));
+    titleInput.addEventListener('input', debounce(syncPreviewFromForm, 300));
+    contactInput.addEventListener('input', debounce(syncPreviewFromForm, 300));
+    fontSize.addEventListener('change', applyPreviewSettings);
+    accentColor.addEventListener('input', applyPreviewSettings);
+    addExp.addEventListener('click', addExperience);
+    addEdu.addEventListener('click', addEducation);
+
+    // keyboard tip: press Ctrl+S to save
+    window.addEventListener('keydown', (e)=>{ if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){ e.preventDefault(); saveState(); }});
+
+    // initial load
+    (function init(){
+      const restored = loadState();
+      renderTemplate(state.template || 'free-1');
+      if(restored) applyFields();
+      syncFormFromPreview();
+      showToast('Template loaded');
+    })();
+
+  </script>
 </body>
 </html>
