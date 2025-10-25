@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Runvai — Builder 3.1 Futuristic</title>
+<title>Runvai — Futuristic Builder 2.1</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
   --accent: #0ff;
@@ -59,14 +59,6 @@ body {
   color: #000;
   transform: translateY(-2px);
 }
-.floating-toolbar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 0.5rem;
-  z-index: 10;
-}
 .section-hover:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 12px var(--accent);
@@ -78,14 +70,15 @@ body {
 
 <div class="max-w-[1200px] mx-auto p-6">
 
+  <!-- Header -->
   <header class="flex items-center justify-between mb-6">
     <div class="flex items-center gap-3">
       <div class="w-12 h-12 rounded-lg bg-[#0f172a] flex items-center justify-center shadow-lg cursor-pointer">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#0ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <h1 class="text-xl font-semibold text-[#0ff]">Runvai — Smart Builder</h1>
-        <p class="text-sm text-cyan-300">Templates 2.1 · Fresher (Free) · Futuristic theme · PDF export</p>
+        <h1 class="text-xl font-semibold text-[#0ff]">Runvai — Futuristic Builder</h1>
+        <p class="text-sm text-cyan-300">Templates 2.1 · Fresher (Free) · Neon dark theme · PDF export</p>
       </div>
     </div>
 
@@ -93,9 +86,7 @@ body {
       <div class="w-[260px]">
         <div class="bg-[#121230] rounded-md p-2 flex items-center gap-2 shadow-inner">
           <div class="w-2/5 text-xs text-cyan-300">Profile completeness</div>
-          <div class="w-3/5 bg-[#0f172a] rounded-full p-1">
-            <div id="completenessBar" class="progress-bar" style="width:40%"></div>
-          </div>
+          <div class="w-3/5 bg-[#0f172a] rounded-full p-1"><div id="completenessBar" class="progress-bar" style="width:40%"></div></div>
         </div>
       </div>
       <button id="exportPdfBtn" class="px-3 py-2 neon-button text-white text-sm">Export PDF</button>
@@ -135,6 +126,7 @@ body {
   </div>
 
   <main class="grid grid-cols-12 gap-6">
+    <!-- Left controls -->
     <aside class="col-span-3 glass p-4 rounded-xl">
       <h3 class="font-medium mb-3 text-cyan-300">Templates</h3>
       <div class="flex flex-col gap-2">
@@ -161,12 +153,14 @@ body {
       <p class="text-xs text-cyan-400 mt-3">Indicators show what matters. Hover a dot to see why it’s flagged.</p>
     </aside>
 
+    <!-- Center preview -->
     <section class="col-span-6">
       <div class="paper bg-[#121230] shadow-lg rounded-xl p-4 relative" id="previewContainer">
         <div id="preview">Loading template…</div>
       </div>
     </section>
 
+    <!-- Right -->
     <aside class="col-span-3 glass p-4 rounded-xl">
       <h3 class="font-medium mb-2 text-cyan-300">Sections & Indicators</h3>
       <div id="sectionsList" class="space-y-2 text-sm text-cyan-300"></div>
@@ -183,10 +177,13 @@ body {
     </aside>
   </main>
 
-  <footer class="mt-6 text-xs text-cyan-400">Runvai • Templates 2.1 — Futuristic Builder</footer>
+  <footer class="mt-6 text-xs text-cyan-400">Runvai • Templates 2.1 — Futuristic Builder — PDF export</footer>
 </div>
 
-<!-- Your full JS from previous builder 2.1 goes here (templates, renderTemplate, saveState, exportPDF, etc.) -->
+<!-- JS: Full 2.1 builder logic -->
+<script>
+// <<< PASTE YOUR ENTIRE PREVIOUS 2.1 JS CODE HERE EXACTLY >>>
+</script>
 
 </body>
 </html>
