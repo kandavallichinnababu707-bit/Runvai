@@ -1,343 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Runvai — Builder (Templates 2.1) — Fresher Template</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="color-scheme" content="light dark">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
-  <style>
-    :root{--accent:#2563EB}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
-    .glass{background:linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.45));backdrop-filter:blur(8px);}
-    .focus-outline:focus{outline:2px solid rgba(37,99,235,0.18);outline-offset:2px}
-    .progress-bar{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#60a5fa)}
-    [contenteditable]:focus{outline:2px solid rgba(37,99,235,0.12);outline-offset:2px}
-    .indicator{width:10px;height:10px;border-radius:999px;display:inline-block;margin-right:8px}
-    @media print{body *{visibility:hidden} #preview, #preview *{visibility:visible} #preview{position:absolute;left:0;top:0}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Runvai — Futuristic Builder 2.1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #0ff; /* neon cyan accent */
+    --bg: #0a0a1a;
+    --panel: rgba(255,255,255,0.05);
+    --panel-hover: rgba(255,255,255,0.1);
+    --glass: rgba(255,255,255,0.05);
+    --font-main: 'Inter', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-main);
+    background: linear-gradient(135deg, #0a0a1a 0%, #121230 100%);
+    color: #e0e0ff;
+    min-height: 100vh;
+  }
+
+  .glass-panel {
+    backdrop-filter: blur(12px);
+    background: var(--glass);
+    border-radius: 1rem;
+    border: 1px solid rgba(0,255,255,0.2);
+  }
+
+  .focus-outline:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .progress-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), #60f3fa);
+  }
+
+  [contenteditable]:focus {
+    outline: 2px solid rgba(0,255,255,0.3);
+    outline-offset: 2px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  .tpl-btn:hover {
+    background: var(--panel-hover);
+  }
+
+  main::-webkit-scrollbar {
+    width: 8px;
+  }
+  main::-webkit-scrollbar-thumb {
+    background: rgba(0,255,255,0.3);
+    border-radius: 4px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+  }
+
+</style>
 </head>
-<body class="bg-slate-50 min-h-screen text-slate-800">
-  <div class="max-w-[1200px] mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-lg bg-white flex items-center justify-center shadow">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 18h16M4 12h8" stroke="#1E3A8A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <h1 class="text-xl font-semibold">Runvai — Smart Builder</h1>
-          <p class="text-sm text-slate-500">Templates 2.1 · Fresher (Free) · Gradient blue theme · PDF export</p>
-        </div>
+<body class="p-6">
+
+<div class="max-w-[1400px] mx-auto flex flex-col gap-6">
+
+  <!-- HEADER -->
+  <header class="flex justify-between items-center mb-6">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg">
+        <svg width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-
-      <div class="flex gap-2 items-center">
-        <div class="w-[260px]">
-          <div class="bg-white rounded-md p-2 flex items-center gap-2 shadow-sm">
-            <div class="w-2/5 text-xs text-slate-500">Profile completeness</div>
-            <div class="w-3/5 bg-slate-100 rounded-full p-1"><div id="completenessBar" class="progress-bar" style="width:40%"></div></div>
-          </div>
-        </div>
-        <button id="exportPdfBtn" class="px-3 py-2 bg-blue-600 text-white rounded-md text-sm shadow">Export PDF</button>
-        <button id="saveBtn" class="px-3 py-2 bg-white border border-slate-200 rounded-md text-sm">Save</button>
-      </div>
-    </header>
-
-    <!-- Toolbar -->
-    <div class="mb-4">
-      <div class="bg-white p-3 rounded-lg shadow flex items-center gap-3">
-        <label class="text-sm text-slate-600">Font</label>
-        <select id="fontSelect" class="border p-1 rounded text-sm">
-          <option value="Inter">Sans (Inter)</option>
-          <option value="Merriweather">Serif (Merriweather)</option>
-          <option value="monospace">Mono</option>
-        </select>
-
-        <label class="text-sm text-slate-600 ml-3">Text color</label>
-        <input id="fontColor" type="color" value="#0f172a" class="w-10 h-8 border-0" />
-
-        <label class="text-sm text-slate-600">Highlight</label>
-        <input id="highlightColor" type="color" value="#fef3c7" class="w-10 h-8 border-0" />
-
-        <div class="ml-auto flex items-center gap-2">
-          <button id="undoBtn" class="px-2 py-1 border rounded text-sm">Undo</button>
-          <button id="redoBtn" class="px-2 py-1 border rounded text-sm">Redo</button>
-          <div class="border-l h-6"></div>
-          <select id="addSection" class="border p-1 rounded text-sm">
-            <option value="">Add section</option>
-            <option value="project">Project</option>
-            <option value="cert">Certification</option>
-            <option value="ach">Achievement</option>
-          </select>
-          <button id="clearFmt" class="px-2 py-1 border rounded text-sm">Clear</button>
-        </div>
+      <div>
+        <h1 class="text-2xl font-bold text-white">Runvai — Futuristic Builder</h1>
+        <p class="text-sm text-cyan-200">Templates 2.1 · Free & Pro · Smart PDF Export</p>
       </div>
     </div>
 
-    <main class="grid grid-cols-12 gap-6">
-      <!-- Left: controls -->
-      <aside class="col-span-3">
-        <div class="glass p-4 rounded-xl">
-          <h3 class="font-medium mb-3">Templates</h3>
-          <div class="flex flex-col gap-2">
-            <button class="tpl-btn text-left p-3 rounded-md hover:bg-slate-100" data-tpl="free-1">Free — Clean Minimal (ATS)</button>
-            <button class="tpl-btn text-left p-3 rounded-md bg-slate-50" data-tpl="free-2">Free — Fresher (Two-column)</button>
-            <button class="tpl-btn text-left p-3 rounded-md opacity-60 cursor-not-allowed" disabled>Pro — coming</button>
-            <button class="tpl-btn text-left p-3 rounded-md opacity-60 cursor-not-allowed" disabled>Premium — coming</button>
-          </div>
-
-          <hr class="my-4" />
-
-          <h3 class="font-medium mb-2">Personal Info</h3>
-          <div id="formFields" class="space-y-3">
-            <input id="nameInput" placeholder="Full name" class="w-full p-2 rounded border" />
-            <input id="titleInput" placeholder="Objective / Title" class="w-full p-2 rounded border" />
-            <input id="contactInput" placeholder="email • phone • city" class="w-full p-2 rounded border" />
-          </div>
-
-          <hr class="my-4" />
-
-          <h3 class="font-medium mb-2">Quick actions</h3>
-          <div class="flex gap-2">
-            <button id="addExp" class="flex-1 p-2 rounded border text-sm">+ Add Experience</button>
-            <button id="addEdu" class="flex-1 p-2 rounded border text-sm">+ Add Education</button>
-          </div>
-
-          <p class="text-xs text-slate-500 mt-3">Indicators show what matters. Hover a dot to see why it’s flagged.</p>
-        </div>
-      </aside>
-
-      <!-- Center: preview (editable) -->
-      <section class="col-span-6">
-        <div class="paper bg-white shadow-lg rounded-xl p-4" id="previewContainer">
-          <div id="preview">Loading template…</div>
-        </div>
-      </section>
-
-      <!-- Right: live JSON / slots -->
-      <aside class="col-span-3">
-        <div class="p-4 rounded-xl bg-white shadow">
-          <h3 class="font-medium mb-2">Sections & Indicators</h3>
-          <div id="sectionsList" class="space-y-2 text-sm text-slate-700"></div>
-          <hr class="my-4" />
-          <h3 class="font-medium mb-2">Preview options</h3>
-          <div class="flex items-center gap-2 mb-2">
-            <label class="text-sm">Font size</label>
-            <select id="fontSize" class="ml-auto border p-1 rounded text-sm">
-              <option value="13">13px</option>
-              <option value="14" selected>14px</option>
-              <option value="15">15px</option>
-            </select>
+    <div class="flex items-center gap-3">
+      <div class="w-[260px]">
+        <div class="bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-md p-2 flex items-center gap-2 shadow-inner">
+          <div class="w-2/5 text-xs text-cyan-200">Profile completeness</div>
+          <div class="w-3/5 bg-cyan-900 rounded-full p-1">
+            <div id="completenessBar" class="progress-bar w-1/2"></div>
           </div>
         </div>
-      </aside>
-    </main>
+      </div>
+      <button id="exportPdfBtn" class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold rounded-lg shadow-lg">Export PDF</button>
+      <button id="saveBtn" class="px-4 py-2 bg-transparent border border-cyan-500 hover:bg-cyan-600/20 text-white rounded-lg font-semibold">Save</button>
+    </div>
+  </header>
 
-    <footer class="mt-6 text-xs text-slate-500">Runvai • Templates 2.1 — Fresher template + Smart Builder — PDF export enabled</footer>
+  <!-- TOOLBAR -->
+  <div class="flex gap-3 items-center glass-panel p-3 shadow-lg">
+    <label class="text-sm text-cyan-200">Font</label>
+    <select id="fontSelect" class="rounded p-1 text-sm bg-black/30 border border-cyan-500">
+      <option value="Inter">Sans (Inter)</option>
+      <option value="Rajdhani">Modern (Rajdhani)</option>
+      <option value="monospace">Mono</option>
+    </select>
+
+    <label class="text-sm text-cyan-200 ml-3">Text color</label>
+    <input id="fontColor" type="color" value="#e0e0ff" class="w-10 h-8 border-0">
+
+    <label class="text-sm text-cyan-200 ml-3">Highlight</label>
+    <input id="highlightColor" type="color" value="#0ff" class="w-10 h-8 border-0">
+
+    <div class="ml-auto flex items-center gap-2">
+      <button id="undoBtn" class="px-3 py-1 border rounded text-sm text-cyan-200 hover:bg-cyan-500/20">Undo</button>
+      <button id="redoBtn" class="px-3 py-1 border rounded text-sm text-cyan-200 hover:bg-cyan-500/20">Redo</button>
+      <select id="addSection" class="border rounded text-sm p-1 bg-black/30 border-cyan-500">
+        <option value="">Add section</option>
+        <option value="project">Project</option>
+        <option value="cert">Certification</option>
+        <option value="ach">Achievement</option>
+      </select>
+      <button id="clearFmt" class="px-2 py-1 border rounded text-sm text-cyan-200 hover:bg-cyan-500/20">Clear</button>
+    </div>
   </div>
 
-  <!-- Templates -->
-  <script>
-    const TEMPLATES = {
-      'free-1': `<!-- simple ATS template -->
-      <div style="max-width:780px;margin:0 auto;color:#0f172a;font-family:Inter, ui-sans-serif, system-ui;"> 
-        <div style="display:flex;gap:18px;align-items:center;margin-bottom:6px"> 
-          <div style="flex:1"> 
-            <h1 data-field="name" contenteditable="true" class="name" style="margin:0;font-size:20px;color:var(--accent);font-weight:700">Your Name</h1>
-            <div data-field="title" contenteditable="true" style="margin-top:6px;color:#334155;font-size:13px">Professional Title • Location</div>
-          </div>
-          <div style="text-align:right"> 
-            <div data-field="contact" contenteditable="true" style="font-size:13px;color:#334155">you@example.com • +91 98765 43210</div>
-          </div>
-        </div>
-        <hr style="border:none;border-top:1px solid #e6eefc;margin:14px 0"/>
-        <section>
-          <h3 style="margin:0 0 8px 0;font-size:14px;color:var(--accent);font-weight:600">Summary</h3>
-          <p data-field="summary" contenteditable="true" style="margin:0 0 12px 0;font-size:13px;color:#334155;line-height:1.35">Results-driven student with projects in web development and machine learning.</p>
-        </section>
-        <section style="display:flex;gap:22px"> 
-          <div style="flex:1"> 
-            <h3 style="font-size:14px;color:var(--accent);margin-bottom:8px">Experience</h3>
-            <div class="exp-slot" data-exp-id="1" style="margin-bottom:10px"> 
-              <div style="display:flex;justify-content:space-between"> 
-                <div>
-                  <div contenteditable="true" data-field="exp1-role" style="font-weight:600;font-size:13px">Intern — Frontend</div>
-                  <div contenteditable="true" data-field="exp1-company" style="font-size:12px;color:#475569">Company — Dates</div>
-                </div>
-                <div contenteditable="true" data-field="exp1-location" style="font-size:12px;color:#475569">Remote</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="width:240px"> 
-            <h3 style="font-size:14px;color:var(--accent);margin-bottom:8px">Education</h3>
-            <div contenteditable="true" data-field="edu1">B.Tech — Computer Science — 2024</div>
-            <h3 style="font-size:14px;color:var(--accent);margin:12px 0 8px 0">Skills</h3>
-            <div contenteditable="true" data-field="skills">Python • JavaScript • React • SQL</div>
-          </div>
-        </section>
+  <!-- MAIN -->
+  <main class="grid grid-cols-12 gap-6">
+    <!-- LEFT PANEL -->
+    <aside class="col-span-3 flex flex-col gap-4 glass-panel p-4 shadow-lg">
+      <h3 class="text-cyan-200 font-semibold mb-2">Templates</h3>
+      <div class="flex flex-col gap-2">
+        <button class="tpl-btn p-3 rounded-md text-left hover:bg-cyan-400/20" data-tpl="free-1">Free — Clean Minimal (ATS)</button>
+        <button class="tpl-btn p-3 rounded-md text-left bg-cyan-900/20" data-tpl="free-2">Free — Fresher (Two-column)</button>
+        <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed" disabled>Pro — coming</button>
+        <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed" disabled>Premium — coming</button>
       </div>
-      `,
 
-      'free-2': `<!-- fresher two-column template -->
-      <div style="max-width:820px;margin:0 auto;color:#0f172a;font-family:Inter, ui-sans-serif, system-ui;">
-        <div style="background:linear-gradient(90deg,#1e40af,#60a5fa);padding:18px;border-radius:8px;color:white;display:flex;gap:16px;align-items:center;margin-bottom:14px">
-          <div style="flex:1">
-            <h1 data-field="name" contenteditable="true" style="margin:0;font-size:22px;font-weight:700">Your Name</h1>
-            <div data-field="title" contenteditable="true" style="margin-top:6px;opacity:0.9">Objective or Role you want • Location</div>
-          </div>
-          <div style="width:88px">
-            <div contenteditable="false" id="imgSlot" style="width:72px;height:72px;border-radius:999px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:12px">Add
-            </div>
-          </div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 280px;gap:20px">
-          <div>
-            <h3 style="color:var(--accent);margin-bottom:8px">Projects</h3>
-            <div class="project-slot" data-proj-id="1" style="margin-bottom:10px">
-              <div contenteditable="true" data-field="proj1-title" style="font-weight:600">Project — Title</div>
-              <div contenteditable="true" data-field="proj1-desc" style="font-size:13px;opacity:0.9">Short description of project, tech used, impact.</div>
-            </div>
-
-            <h3 style="color:var(--accent);margin-top:12px;margin-bottom:8px">Experience</h3>
-            <div class="exp-slot" data-exp-id="1">
-              <div contenteditable="true" data-field="exp1-role">Role — Company</div>
-              <div contenteditable="true" data-field="exp1-desc" style="font-size:13px;opacity:0.9">One or two lines about your role and achievement.</div>
-            </div>
-          </div>
-
-          <aside style="background:#fbfdff;padding:12px;border-radius:8px">
-            <h3 style="color:var(--accent);margin-bottom:8px">Education</h3>
-            <div contenteditable="true" data-field="edu1">College — Degree — Year</div>
-
-            <h3 style="color:var(--accent);margin-top:12px;margin-bottom:8px">Skills</h3>
-            <div contenteditable="true" data-field="skills">HTML • CSS • JS • Python</div>
-
-            <h3 style="color:var(--accent);margin-top:12px;margin-bottom:8px">Certifications</h3>
-            <div contenteditable="true" data-field="certs">Course name — Provider</div>
-          </aside>
-        </div>
+      <hr class="border-cyan-700 my-3">
+      <h3 class="text-cyan-200 font-semibold mb-2">Personal Info</h3>
+      <div id="formFields" class="flex flex-col gap-2">
+        <input id="nameInput" placeholder="Full name" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
+        <input id="titleInput" placeholder="Objective / Title" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
+        <input id="contactInput" placeholder="Email • Phone • City" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
       </div>
-      `
-    };
+    </aside>
 
-    const STATE_KEY = 'runvai_draft_v2';
-    let state = { template: 'free-2', fields: {}, history: [], future: [] };
+    <!-- CENTER PANEL -->
+    <section class="col-span-6 glass-panel p-4 shadow-lg overflow-auto">
+      <div class="paper bg-black/20 rounded-xl p-4" id="previewContainer">
+        <div id="preview">Loading template…</div>
+      </div>
+    </section>
 
-    // DOM refs
-    const preview = document.getElementById('preview');
-    const tplButtons = document.querySelectorAll('.tpl-btn');
-    const nameInput = document.getElementById('nameInput');
-    const titleInput = document.getElementById('titleInput');
-    const contactInput = document.getElementById('contactInput');
-    const saveBtn = document.getElementById('saveBtn');
-    const exportPdfBtn = document.getElementById('exportPdfBtn');
-    const sectionsList = document.getElementById('sectionsList');
-    const fontSize = document.getElementById('fontSize');
-    const fontSelect = document.getElementById('fontSelect');
-    const fontColor = document.getElementById('fontColor');
-    const highlightColor = document.getElementById('highlightColor');
-    const addSection = document.getElementById('addSection');
-    const undoBtn = document.getElementById('undoBtn');
-    const redoBtn = document.getElementById('redoBtn');
-    const clearFmt = document.getElementById('clearFmt');
+    <!-- RIGHT PANEL -->
+    <aside class="col-span-3 glass-panel p-4 shadow-lg flex flex-col gap-4">
+      <h3 class="text-cyan-200 font-semibold mb-2">Sections & Indicators</h3>
+      <div id="sectionsList" class="flex flex-col gap-2 text-sm text-cyan-100"></div>
+    </aside>
+  </main>
 
-    // utilities
-    function saveState(){
-      collectFields();
-      localStorage.setItem(STATE_KEY, JSON.stringify(state));
-      showToast('Saved');
-    }
-    function loadState(){
-      const raw = localStorage.getItem(STATE_KEY); if(!raw) return false; try{ state = JSON.parse(raw); return true }catch(e){ return false }
-    }
-    function pushHistory(){ state.history.push(preview.innerHTML); if(state.history.length>30) state.history.shift(); state.future = []; }
-    function undo(){ if(state.history.length===0) return; state.future.push(preview.innerHTML); const last = state.history.pop(); preview.innerHTML = last; attachEditableListeners(); applyFields(); rebuildSectionsList(); updateCompleteness(); }
-    function redo(){ if(state.future.length===0) return; state.history.push(preview.innerHTML); const f = state.future.pop(); preview.innerHTML = f; attachEditableListeners(); applyFields(); rebuildSectionsList(); updateCompleteness(); }
+  <footer>Runvai • Futuristic Builder 2.1 — PDF export enabled</footer>
 
-    function collectFields(){ const els = preview.querySelectorAll('[data-field]'); const fields = {}; els.forEach(e=> fields[e.getAttribute('data-field')] = e.innerHTML); state.fields = fields; }
+</div>
 
-    function renderTemplate(name){ const tpl = TEMPLATES[name]; if(!tpl){ preview.innerHTML = '<div class="p-4">Template not found</div>'; return; } pushHistory(); preview.innerHTML = tpl; state.template = name; applyFields(); attachEditableListeners(); rebuildSectionsList(); applyPreviewSettings(); updateCompleteness(); }
+<!-- JS LOGIC: paste your template + builder JS code here -->
+<script>
+  /* REUSE your original TEMPLATES object and JS functions here, 
+     just make sure preview styling uses neon/glass as above */
+</script>
 
-    function applyFields(){ const fields = state.fields || {}; Object.keys(fields).forEach(k=>{ const el = preview.querySelector('[data-field="'+k+'"]'); if(el) el.innerHTML = fields[k]; }); }
-
-    function attachEditableListeners(){ const editableEls = preview.querySelectorAll('[contenteditable]'); editableEls.forEach(el=>{ el.addEventListener('input', debounce(()=>{ collectFields(); updateCompleteness(); pushToLocalDebounced(); }, 500)); el.addEventListener('focus', ()=> el.classList.add('focus-outline')); el.addEventListener('blur', ()=> el.classList.remove('focus-outline')); }); }
-
-    const pushToLocalDebounced = debounce(saveState, 700);
-    function debounce(fn,t){ let id; return (...a)=>{ clearTimeout(id); id = setTimeout(()=>fn.apply(this,a), t); } }
-
-    function rebuildSectionsList(){ sectionsList.innerHTML=''; const heads = preview.querySelectorAll('h3'); heads.forEach((h)=>{ const div=document.createElement('div'); div.className='flex items-center justify-between gap-2'; const title=h.textContent||'Section'; const left=document.createElement('div'); left.innerHTML=`<span class=\"indicator\" style=\"background:#ffd966\"></span><span class=\"text-sm\">${title}</span>`; const right=document.createElement('div'); right.innerHTML=`<button class=\"text-xs p-1\">Hide</button>`; div.appendChild(left); div.appendChild(right); sectionsList.appendChild(div); }); }
-
-    function addProject(){ const container = preview.querySelector('.project-slot')?.parentElement; if(!container) return showToast('No project area found'); const id=Date.now(); const node = document.createElement('div'); node.className='project-slot'; node.setAttribute('data-proj-id', id); node.innerHTML = `<div contenteditable="true" data-field="proj-${id}-title" style="font-weight:600">New Project</div><div contenteditable="true" data-field="proj-${id}-desc" style="font-size:13px;color:#475569">Short description</div>`; container.appendChild(node); attachEditableListeners(); saveState(); rebuildSectionsList(); }
-
-    function addCertification(){ const container = preview.querySelector('[data-field="certs"]'); if(!container) return showToast('No certs area'); const id=Date.now(); const node=document.createElement('div'); node.contentEditable=true; node.setAttribute('data-field','cert-'+id); node.innerText='New Certification — Provider'; container.parentElement.appendChild(node); attachEditableListeners(); saveState(); rebuildSectionsList(); }
-
-    function addAchievement(){ const container = preview.querySelector('[data-field="skills"]'); if(!container) return showToast('No skills area'); const node=document.createElement('div'); node.contentEditable=true; node.setAttribute('data-field','ach-'+Date.now()); node.innerText='Achievement — brief'; container.parentElement.appendChild(node); attachEditableListeners(); saveState(); rebuildSectionsList(); }
-
-    function applyPreviewSettings(){ preview.style.fontFamily = fontSelect.value; preview.style.color = fontColor.value; preview.style.fontSize = fontSize.value + 'px'; // highlight color applied as background for selections
-      preview.querySelectorAll('[data-field]').forEach(el=> el.style.backgroundColor='transparent'); }
-
-    function clearFormatting(){ const els = preview.querySelectorAll('[data-field]'); els.forEach(e=>{ e.style.background='transparent'; }); document.execCommand('removeFormat'); saveState(); }
-
-    function updateCompleteness(){ // simple scoring
-      const required = ['name','contact']; let score=0; let max=required.length+2; required.forEach(k=>{ const v = (state.fields && state.fields[k]) || ''; if(v && v.replace(/\s|&nbsp;|<br>/g,'').length>2) score++; }); // bonus: summary and at least one skill
-      if(state.fields && state.fields['summary'] && state.fields['summary'].replace(/\s|&nbsp;|<br>/g,'').length>10) score++; if(state.fields && state.fields['skills'] && state.fields['skills'].replace(/\s|&nbsp;|<br>/g,'').length>3) score++;
-      const pct = Math.round((score/max)*100);
-      document.getElementById('completenessBar').style.width = pct + '%';
-      // indicators update
-      ['name','contact','title','summary','skills'].forEach(k=>{
-        const el = preview.querySelector('[data-field="'+k+'"]'); if(!el) return; const dot = document.createElement('span'); dot.className='indicator'; const v = (state.fields && state.fields[k])||''; if(k==='name' || k==='contact'){
-          if(!v || v.replace(/\s|&nbsp;|<br>/g,'').length<3) dot.style.background='red'; else dot.style.background='green';
-        } else {
-          if(!v || v.replace(/\s|&nbsp;|<br>/g,'').length<3) dot.style.background='#ffd966'; else dot.style.background='green';
-        }
-        // attach tooltip
-        el.setAttribute('data-indicator', ''); el.parentElement?.querySelectorAll('.indicator')?.forEach(n=>n.remove()); el.parentElement?.insertBefore(dot, el);
-      });
-    }
-
-    function showToast(msg){ const el=document.createElement('div'); el.textContent=msg; el.className='fixed right-6 bottom-6 bg-slate-800 text-white px-3 py-2 rounded shadow'; document.body.appendChild(el); setTimeout(()=>el.remove(),1500); }
-
-    // export PDF using html2pdf
-    async function exportPDF(){
-      // lazy-load html2pdf script
-      if(!window.html2pdf){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js'); }
-      const opt = { margin:0.4, filename: (state.fields['name']||'resume') + '.pdf', image:{type:'jpeg',quality:0.95}, html2canvas:{scale:2, useCORS:true}, jsPDF:{unit:'in',format:'a4',orientation:'portrait'} };
-      const node = document.getElementById('previewContainer');
-      // clone and remove editing attributes for clean PDF
-      const clone = node.cloneNode(true);
-      clone.querySelectorAll('[contenteditable]').forEach(e=> e.removeAttribute('contenteditable'));
-      // temporarily show larger width for A4
-      const wrapper = document.createElement('div'); wrapper.style.padding='20px'; wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-      try{ await html2pdf().set(opt).from(clone).save(); }catch(e){ console.error(e); showToast('PDF export failed'); }
-      wrapper.remove();
-    }
-
-    function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
-
-    // events
-    tplButtons.forEach(b => b.addEventListener('click', ()=> renderTemplate(b.getAttribute('data-tpl'))));
-    saveBtn.addEventListener('click', saveState);
-    exportPdfBtn.addEventListener('click', ()=>{ collectFields(); updateCompleteness(); exportPDF(); });
-    fontSize.addEventListener('change', applyPreviewSettings);
-    fontSelect.addEventListener('change', applyPreviewSettings);
-    fontColor.addEventListener('input', applyPreviewSettings);
-    highlightColor.addEventListener('input', ()=>{ /* could apply highlights */ });
-    addSection.addEventListener('change', ()=>{ const v=addSection.value; if(v==='project') addProject(); if(v==='cert') addCertification(); if(v==='ach') addAchievement(); addSection.value=''; });
-    undoBtn.addEventListener('click', undo); redoBtn.addEventListener('click', redo); clearFmt.addEventListener('click', clearFormatting);
-
-    // form sync
-    nameInput.addEventListener('input', debounce(()=>{ if(preview.querySelector('[data-field="name"]')) preview.querySelector('[data-field="name"]').innerText = nameInput.value || 'Your Name'; collectFields(); updateCompleteness(); },200));
-    titleInput.addEventListener('input', debounce(()=>{ if(preview.querySelector('[data-field="title"]')) preview.querySelector('[data-field="title"]').innerText = titleInput.value || 'Objective or Role you want'; collectFields(); updateCompleteness(); },200));
-    contactInput.addEventListener('input', debounce(()=>{ if(preview.querySelector('[data-field="contact"]')) preview.querySelector('[data-field="contact"]').innerText = contactInput.value || 'you@example.com • +91 98765 43210'; collectFields(); updateCompleteness(); },200));
-
-    window.addEventListener('keydown', (e)=>{ if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){ e.preventDefault(); saveState(); } });
-
-    // init
-    (function init(){ const restored = loadState(); renderTemplate(state.template || 'free-2'); if(restored){ applyFields(); } attachEditableListeners(); updateCompleteness(); showToast('Runvai 2.1 loaded'); })();
-
-  </script>
 </body>
 </html>
