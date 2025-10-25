@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Runvai — Choose Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center">
+
+  <h1 class="text-3xl font-bold mb-8">Choose Your Resume Template</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl">
+    <!-- Free Templates -->
+    <div class="border rounded-lg p-4 hover:shadow-lg cursor-pointer" onclick="selectTemplate('free-1')">
+      <img src="templates/free-1-preview.png" alt="Free Clean Minimal" class="mb-2 w-full rounded">
+      <h2 class="font-medium text-lg">Free — Clean Minimal</h2>
+      <p class="text-sm text-slate-500">ATS-friendly, minimalist design</p>
+    </div>
+
+    <div class="border rounded-lg p-4 hover:shadow-lg cursor-pointer" onclick="selectTemplate('free-2')">
+      <img src="templates/free-2-preview.png" alt="Free Fresher Modern" class="mb-2 w-full rounded">
+      <h2 class="font-medium text-lg">Free — Fresher Modern</h2>
+      <p class="text-sm text-slate-500">Slightly modern look for freshers</p>
+    </div>
+
+    <!-- Pro/Premium placeholders -->
+    <div class="border rounded-lg p-4 opacity-50 cursor-not-allowed">
+      <img src="templates/pro-preview.png" alt="Pro Template" class="mb-2 w-full rounded">
+      <h2 class="font-medium text-lg">Pro — Coming Soon</h2>
+      <p class="text-sm text-slate-500">Premium features</p>
+    </div>
+
+    <div class="border rounded-lg p-4 opacity-50 cursor-not-allowed">
+      <img src="templates/premium-preview.png" alt="Premium Template" class="mb-2 w-full rounded">
+      <h2 class="font-medium text-lg">Premium — Coming Soon</h2>
+      <p class="text-sm text-slate-500">Advanced styling</p>
+    </div>
+  </div>
+
+  <script>
+    function selectTemplate(template) {
+      // Save selected template in localStorage and redirect to builder
+      localStorage.setItem('runvai_selected_template', template);
+      window.location.href = 'builder.html';
+    }
+  </script>
+
+</body>
+</html>
 
