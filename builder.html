@@ -3,99 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Runvai — Futuristic Builder 3.0</title>
+<title>Runvai — Futuristic Builder 3.1</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --accent: #0ff;
-    --accent-hover: #0ff8;
-    --bg-dark: #0a0a1a;
-    --panel: rgba(255,255,255,0.05);
-    --glass: rgba(255,255,255,0.05);
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0a0a1a, #121230);
-    color: #e0e0ff;
-    min-height: 100vh;
-  }
-
-  .glass-panel {
-    backdrop-filter: blur(15px);
-    background: var(--glass);
-    border-radius: 1rem;
-    border: 1px solid rgba(0,255,255,0.2);
-    transition: all 0.3s ease;
-  }
-
-  .glass-panel:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 20px var(--accent);
-  }
-
-  .focus-outline:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
-  .progress-bar {
-    height: 10px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent), #60f3fa);
-    transition: width 0.3s ease;
-  }
-
-  [contenteditable]:focus {
-    outline: 2px solid rgba(0,255,255,0.3);
-    outline-offset: 2px;
-  }
-
-  .tpl-btn {
-    transition: all 0.3s;
-  }
-  .tpl-btn:hover {
-    background: var(--accent-hover);
-    transform: translateX(5px);
-    color: #000;
-  }
-
-  .neon-button {
-    transition: all 0.3s;
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 5px var(--accent), 0 0 15px var(--accent);
-  }
-  .neon-button:hover {
-    box-shadow: 0 0 10px var(--accent), 0 0 25px var(--accent);
-    background: var(--accent-hover);
-    color: #000;
-    transform: translateY(-2px);
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    color: rgba(255,255,255,0.4);
-    font-size: 0.8rem;
-  }
+:root {
+  --accent: #0ff;
+  --accent-hover: #0ff8;
+  --bg-dark: #0a0a1a;
+  --panel: rgba(255,255,255,0.05);
+  --glass: rgba(255,255,255,0.05);
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0a0a1a, #121230);
+  color: #e0e0ff;
+  min-height: 100vh;
+}
+.glass-panel {
+  backdrop-filter: blur(15px);
+  background: var(--glass);
+  border-radius: 1rem;
+  border: 1px solid rgba(0,255,255,0.2);
+  transition: all 0.3s ease;
+}
+.glass-panel:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+}
+.focus-outline:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #60f3fa);
+  transition: width 0.3s ease;
+}
+[contenteditable]:focus {
+  outline: 2px solid rgba(0,255,255,0.6);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px var(--accent);
+}
+.tpl-btn {
+  transition: all 0.3s;
+}
+.tpl-btn:hover {
+  background: var(--accent-hover);
+  transform: translateX(5px);
+  color: #000;
+}
+.neon-button {
+  transition: all 0.3s;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 5px var(--accent), 0 0 15px var(--accent);
+}
+.neon-button:hover {
+  box-shadow: 0 0 10px var(--accent), 0 0 25px var(--accent);
+  background: var(--accent-hover);
+  color: #000;
+  transform: translateY(-2px);
+}
+.floating-toolbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.section-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--accent);
+  transition: all 0.3s;
+}
+#templatesPanel {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  height: 100%;
+  background: rgba(10,10,30,0.95);
+  backdrop-filter: blur(15px);
+  border-right: 1px solid rgba(0,255,255,0.2);
+  padding: 1rem;
+  transition: left 0.4s ease;
+  z-index: 20;
+}
+#templatesPanel.active { left: 0; }
 </style>
 </head>
-<body class="p-6">
+<body class="relative p-6">
+
+<!-- Templates Sliding Panel -->
+<div id="templatesPanel">
+  <h3 class="text-cyan-200 font-semibold mb-4 text-lg">Select Template</h3>
+  <button class="tpl-btn p-3 rounded-md mb-2 w-full text-left">Free — Clean Minimal (ATS)</button>
+  <button class="tpl-btn p-3 rounded-md mb-2 w-full text-left bg-cyan-900/20">Free — Fresher (Two-column)</button>
+  <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed mb-2 w-full" disabled>Pro — coming</button>
+  <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed w-full" disabled>Premium — coming</button>
+</div>
 
 <div class="max-w-[1400px] mx-auto flex flex-col gap-6">
 
   <!-- HEADER -->
   <header class="flex justify-between items-center mb-6">
     <div class="flex items-center gap-4">
-      <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg animate-pulse">
+      <div class="w-12 h-12 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg animate-pulse cursor-pointer" onclick="toggleTemplates()">
         <svg width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div>
         <h1 class="text-2xl font-bold text-white">Runvai — Futuristic Builder</h1>
-        <p class="text-sm text-cyan-200">Templates 3.0 · Free & Pro · Smart PDF Export</p>
+        <p class="text-sm text-cyan-200">Templates 3.1 · Free & Pro · Smart PDF Export</p>
       </div>
     </div>
 
@@ -113,77 +135,29 @@
     </div>
   </header>
 
-  <!-- TOOLBAR -->
-  <div class="flex gap-3 items-center glass-panel p-3 shadow-lg">
-    <label class="text-sm text-cyan-200">Font</label>
-    <select id="fontSelect" class="rounded p-1 text-sm bg-black/30 border border-cyan-500">
-      <option value="Inter">Sans (Inter)</option>
-      <option value="Rajdhani">Modern (Rajdhani)</option>
-      <option value="monospace">Mono</option>
-    </select>
-
-    <label class="text-sm text-cyan-200 ml-3">Text color</label>
-    <input id="fontColor" type="color" value="#e0e0ff" class="w-10 h-8 border-0">
-
-    <label class="text-sm text-cyan-200 ml-3">Highlight</label>
-    <input id="highlightColor" type="color" value="#0ff" class="w-10 h-8 border-0">
-
-    <div class="ml-auto flex items-center gap-2">
-      <button id="undoBtn" class="px-3 py-1 neon-button">Undo</button>
-      <button id="redoBtn" class="px-3 py-1 neon-button">Redo</button>
-      <select id="addSection" class="border rounded text-sm p-1 bg-black/30 border-cyan-500">
-        <option value="">Add section</option>
-        <option value="project">Project</option>
-        <option value="cert">Certification</option>
-        <option value="ach">Achievement</option>
-      </select>
-      <button id="clearFmt" class="px-2 py-1 neon-button">Clear</button>
-    </div>
-  </div>
-
-  <!-- MAIN -->
-  <main class="grid grid-cols-12 gap-6">
-    <!-- LEFT PANEL -->
-    <aside class="col-span-3 flex flex-col gap-4 glass-panel p-4 shadow-lg">
-      <h3 class="text-cyan-200 font-semibold mb-2">Templates</h3>
-      <div class="flex flex-col gap-2">
-        <button class="tpl-btn p-3 rounded-md text-left">Free — Clean Minimal (ATS)</button>
-        <button class="tpl-btn p-3 rounded-md text-left bg-cyan-900/20">Free — Fresher (Two-column)</button>
-        <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed" disabled>Pro — coming</button>
-        <button class="tpl-btn p-3 rounded-md opacity-50 cursor-not-allowed" disabled>Premium — coming</button>
+  <!-- CENTER PREVIEW -->
+  <main class="grid grid-cols-12 gap-6 relative">
+    <section class="col-span-12 glass-panel p-6 shadow-lg overflow-auto relative">
+      <!-- Floating toolbar -->
+      <div class="floating-toolbar">
+        <button id="undoBtn" class="neon-button px-3 py-1">Undo</button>
+        <button id="redoBtn" class="neon-button px-3 py-1">Redo</button>
+        <button id="clearFmt" class="neon-button px-3 py-1">Clear</button>
       </div>
-
-      <hr class="border-cyan-700 my-3">
-      <h3 class="text-cyan-200 font-semibold mb-2">Personal Info</h3>
-      <div id="formFields" class="flex flex-col gap-2">
-        <input id="nameInput" placeholder="Full name" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
-        <input id="titleInput" placeholder="Objective / Title" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
-        <input id="contactInput" placeholder="Email • Phone • City" class="w-full p-2 rounded border border-cyan-500 bg-black/20 text-white"/>
-      </div>
-    </aside>
-
-    <!-- CENTER PANEL -->
-    <section class="col-span-6 glass-panel p-4 shadow-lg overflow-auto hover:shadow-cyan-500/50 transition-all duration-300">
       <div class="paper bg-black/20 rounded-xl p-4" id="previewContainer">
-        <div id="preview">Loading template…</div>
+        <div id="preview" class="section-hover">Loading template…</div>
       </div>
     </section>
-
-    <!-- RIGHT PANEL -->
-    <aside class="col-span-3 glass-panel p-4 shadow-lg flex flex-col gap-4">
-      <h3 class="text-cyan-200 font-semibold mb-2">Sections & Indicators</h3>
-      <div id="sectionsList" class="flex flex-col gap-2 text-sm text-cyan-100"></div>
-    </aside>
   </main>
 
-  <footer>Runvai • Futuristic Builder 3.0 — PDF export enabled</footer>
-
+  <footer>Runvai • Futuristic Builder 3.1 — PDF export enabled</footer>
 </div>
 
-<!-- JS LOGIC: Paste your original template + builder JS code here -->
 <script>
-  // Use your previous TEMPLATES object and all JS functions
-  // Make sure the preview elements inherit neon/glass styles
+function toggleTemplates(){
+  document.getElementById('templatesPanel').classList.toggle('active');
+}
+// Your previous builder JS logic here (TEMPLATES object, renderTemplate, saveState etc.)
 </script>
 </body>
 </html>
