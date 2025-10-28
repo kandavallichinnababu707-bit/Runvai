@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Runvai Example Resume</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root{--accent:#0ea5ff}
+body{font-family:'Poppins',system-ui;background:transparent;padding:0;margin:0}
+.resume-page{width:794px;height:1123px;background:white;color:#111;padding:36px;box-sizing:border-box}
+.header{display:flex;justify-content:space-between;align-items:center}
+.name{font-size:24px;font-weight:700}
+.title{color:#6b7280;font-size:13px;margin-top:6px}
+.section{margin-top:18px}
+.sec-title{font-weight:600;color:var(--accent);font-size:12px;padding:6px 8px;border-radius:6px;background:rgba(14,165,255,0.06);display:inline-block}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.skill{padding:6px 8px;border-radius:6px;background:#f3f4f6;font-size:12px;color:#111}
+.meta{color:#6b7280;font-size:13px}
+@media print{
+  .resume-page{width:210mm;height:297mm;padding:12mm}
+}
+</style>
+</head><body>
+<div class="resume-page" id="resume-root">
+  <div class="header">
+    <div>
+      <div class="name">Aarav Kumar</div>
+      <div class="title">Computer Science Graduate — Fresher</div>
+    </div>
+    <div class="meta">📞 +91 98765 43210<br/>✉️ aarav@example.com</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title">Education</div>
+    <div class="meta" style="margin-top:8px">B.Tech Computer Science — IIT Example (2021–2025)<br/>CGPA: 8.6</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title">Projects</div>
+    <ul class="meta" style="margin-top:8px">
+      <li>Smart Campus — React app for campus navigation.</li>
+      <li>Resume AI — NLP parsing & scoring project.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="sec-title">Skills</div>
+    <div class="skills">
+      <span class="skill">Python</span><span class="skill">JavaScript</span><span class="skill">React</span><span class="skill">SQL</span><span class="skill">Git</span>
+    </div>
+  </div>
+</div>
+</body></html>
