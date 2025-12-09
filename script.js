@@ -15,7 +15,7 @@ async function explainText() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_HUGGINGFACE_API_KEY"
+        "Authorization": "Bearer"
       },
       body: JSON.stringify({
         inputs: `Explain this in a very simple way like I'm 5 years old:\n\n${input}`
